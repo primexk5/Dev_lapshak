@@ -66,4 +66,4 @@ You can deploy the `dist` or `build` folder to platforms like Vercel, Netlify, o
 
 ## 📄 License
 
-This project is open source and available under the MIT License.
+This project is open source and available under the MIT License.# Dev_lapshak
