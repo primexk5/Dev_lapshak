@@ -84,17 +84,17 @@ const Skills = () => {
   ]
 
   return (
-    <section id='skills' className='py-20 bg-black'>
+    <section id='skills' className='py-20 bg-white'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Skills Section */}
         <div className='mb-20'>
           <div className='text-center mb-16'>
             <h2 className='text-4xl md:text-5xl font-bold mb-4'>
-              <span className='bg-white bg-clip-text text-transparent'>
+              <span className='text-black'>
                 Skills & Expertise
               </span>
             </h2>
-            <p className='text-gray-400 text-lg max-w-2xl mx-auto'>
+            <p className='text-gray-600 text-lg max-w-2xl mx-auto'>
               Proficient in modern web technologies and best practices
             </p>
           </div>
@@ -104,13 +104,13 @@ const Skills = () => {
             {skillCategories.map((category, index) => (
               <div
                 key={index}
-                className='bg-gradient-to-br from-white/5 to-white/0 border border-white/10 rounded-xl p-6 hover:border-cyan-500/50 transition-all duration-300 group'
+                className='bg-white border border-black/10 rounded-xl p-6 hover:border-black hover:shadow-xl transition-all duration-300 group'
               >
                 <div className='flex items-center gap-3 mb-6'>
-                  <div className='p-3 bg-cyan-500/20 rounded-lg text-cyan-400 group-hover:scale-110 transition-transform'>
+                  <div className='p-3 bg-cyan-500/10 rounded-lg text-cyan-600 group-hover:scale-110 transition-transform'>
                     {category.icon}
                   </div>
-                  <h3 className='text-lg font-bold text-white'>{category.title}</h3>
+                  <h3 className='text-lg font-bold text-black'>{category.title}</h3>
                 </div>
 
                 <div className='space-y-3'>
@@ -119,11 +119,11 @@ const Skills = () => {
                     return (
                       <div key={idx} className='flex items-center gap-3 group/skill'>
                         {IconComponent ? (
-                          <IconComponent className='w-5 h-5 text-gray-400' />
+                          <IconComponent className='w-5 h-5 text-gray-600' />
                         ) : (
-                          <div className='w-5 h-5 rounded bg-white/10' />
+                          <div className='w-5 h-5 rounded bg-black/10' />
                         )}
-                        <span className='text-sm text-gray-300 group-hover/skill:text-cyan-400 transition-colors'>
+                        <span className='text-sm text-gray-600 group-hover/skill:text-cyan-600 transition-colors'>
                           {skill.name}
                         </span>
                       </div>
@@ -139,11 +139,11 @@ const Skills = () => {
         <div>
           <div className='text-center mb-16'>
             <h2 className='text-4xl md:text-5xl font-bold mb-4'>
-              <span className='bg-white bg-clip-text text-transparent'>
+              <span className='text-black'>
                 Services
               </span>
             </h2>
-            <p className='text-gray-400 text-lg max-w-2xl mx-auto'>
+            <p className='text-gray-600 text-lg max-w-2xl mx-auto'>
               What I can do for your project
             </p>
           </div>
@@ -153,17 +153,17 @@ const Skills = () => {
             {services.map((service, index) => (
               <div
                 key={index}
-                className='bg-gradient-to-br from-cyan-500/10 to-purple-500/10 border border-white/10 rounded-xl p-6 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 group'
+                className='bg-white border border-black/10 rounded-xl p-6 hover:border-black hover:shadow-xl transition-all duration-300 group'
               >
                 <div className='flex items-start gap-4'>
-                  <div className='p-3 bg-cyan-500/20 rounded-lg text-cyan-400 mt-1'>
+                  <div className='p-3 bg-cyan-500/10 rounded-lg text-cyan-600 mt-1'>
                     <Code2 className='w-5 h-5' />
                   </div>
                   <div>
-                    <h3 className='text-lg font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors'>
+                    <h3 className='text-lg font-bold text-black mb-2 group-hover:text-cyan-600 transition-colors'>
                       {service.title}
                     </h3>
-                    <p className='text-gray-400 text-sm'>
+                    <p className='text-gray-600 text-sm'>
                       {service.description}
                     </p>
                   </div>
