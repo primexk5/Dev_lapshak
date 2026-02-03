@@ -13,12 +13,12 @@ const Navbar = () => {
   ]
 
   return (
-    <nav className='fixed top-0 left-0 w-full z-50 bg-black bg-opacity-20 backdrop-blur-md'>
+    <nav className='fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-black/5'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='flex justify-between items-center h-16 md:h-20'>
           {/* Logo */}
           <div className='flex-shrink-0'>
-            <span className='text-xl md:text-2xl font-bold bg-white bg-clip-text text-transparent flex items-center'>
+            <span className='text-xl md:text-2xl font-bold text-black flex items-center'>
               <img className='w-10 mr-5' src="/logo.png" alt="" />
               <h1>Dev_lapshak</h1>
 
@@ -32,7 +32,7 @@ const Navbar = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className='text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm lg:text-base font-medium transition-all duration-300 hover:bg-white/10 relative group'
+                  className='text-gray-600 hover:text-black px-3 py-2 rounded-md text-sm lg:text-base font-medium transition-all duration-300 hover:bg-black/5 relative group'
                 >
                   {link.name}
                   <span className='absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-300'></span>
@@ -43,7 +43,7 @@ const Navbar = () => {
 
           {/* CTA Button */}
           <div className='hidden md:block'>
-            <button className='bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-semibold px-6 py-2 rounded-xl hover:shadow-lg hover:shadow-cyan-400/50 transition-all duration-300 transform hover:scale-105'>..
+            <button className='border-2 border-black text-black font-semibold px-6 py-2 rounded-xl hover:bg-black hover:text-white transition-all duration-300'>..
               <a href="https://web.facebook.com/kupsi.barnabas/">Lets Talk</a>
             </button>
           </div>
@@ -52,7 +52,7 @@ const Navbar = () => {
           <div className='md:hidden'>
             <button
               onClick={toggleMenu}
-              className='inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-white/10 focus:outline-none transition-all duration-300'
+              className='inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-black hover:bg-black/5 focus:outline-none transition-all duration-300'
             >
               {isOpen ? (
                 <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -71,21 +71,21 @@ const Navbar = () => {
       {/* Mobile menu */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? 'max-h-64 bg-black/80 backdrop-blur-md' : 'max-h-0'
+          isOpen ? 'max-h-64 bg-white border-b border-black/5' : 'max-h-0'
         }`}
       >
-        <div className='px-2 pt-2 pb-3 space-y-1 border-t border-white/10'>
+        <div className='px-2 pt-2 pb-3 space-y-1 border-t border-black/5'>
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className='text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-all duration-300 hover:bg-white/10'
+              className='text-gray-600 hover:text-black block px-3 py-2 rounded-md text-base font-medium transition-all duration-300 hover:bg-black/5'
               onClick={() => setIsOpen(false)}
             >
               {link.name}
             </a>
           ))}
-           <button className='bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-semibold px-6 py-2 rounded-xl hover:shadow-lg hover:shadow-cyan-400/50 transition-all duration-300 transform hover:scale-105'>..
+           <button className='w-full mt-4 border-2 border-black text-black font-semibold px-6 py-2 rounded-xl hover:bg-black hover:text-white transition-all duration-300'>..
               <a href="https://web.facebook.com/kupsi.barnabas/">Lets Talk</a>
             </button>
         </div>
