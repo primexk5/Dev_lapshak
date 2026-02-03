@@ -44,16 +44,16 @@ const Projects = () => {
   ]
 
   return (
-    <section id='projects' className='py-20 bg-gradient-to-b from-gray-900 to-black'>
+    <section id='projects' className='py-20 bg-white'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Section Header */}
         <div className='text-center mb-16'>
           <h2 className='text-4xl md:text-5xl font-bold mb-4'>
-            <span className='bg-white bg-clip-text text-transparent'>
+            <span className='text-black'>
               Featured Projects
             </span>
           </h2>
-          <p className='text-gray-400 text-lg max-w-2xl mx-auto'>
+          <p className='text-gray-600 text-lg max-w-2xl mx-auto'>
             Explore my recent work showcasing modern tech stack and best practices
           </p>
         </div>
@@ -63,24 +63,23 @@ const Projects = () => {
           {projects.map((project) => (
             <div
               key={project.id}
-              className='group relative bg-black/50 backdrop-blur border border-white/10 rounded-xl overflow-hidden hover:border-cyan-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/20'
+              className='group relative bg-white border border-black/10 rounded-xl overflow-hidden hover:border-black transition-all duration-300 hover:shadow-xl'
             >
               {/* Image Container */}
-              <div className='relative h-48 overflow-hidden bg-gradient-to-br from-cyan-500/20 to-purple-500/20'>
+              <div className='relative h-48 overflow-hidden bg-gray-100'>
                 <img
                   src={project.image}
                   alt={project.title}
                   className='w-full h-full object-cover group-hover:scale-110 transition-transform duration-300'
                 />
-                <div className='absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-300'></div>
               </div>
 
               {/* Content */}
               <div className='p-6 space-y-4'>
-                <h3 className='text-xl font-bold text-white group-hover:text-cyan-400 transition-colors'>
+                <h3 className='text-xl font-bold text-black group-hover:text-cyan-600 transition-colors'>
                   {project.title}
                 </h3>
-                <p className='text-gray-400 text-sm line-clamp-2'>
+                <p className='text-gray-600 text-sm line-clamp-2'>
                   {project.description}
                 </p>
 
@@ -89,7 +88,7 @@ const Projects = () => {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className='text-xs bg-cyan-500/10 text-cyan-400 px-3 py-1 rounded-full border border-cyan-500/20'
+                      className='text-xs bg-cyan-500/10 text-cyan-700 px-3 py-1 rounded-full border border-cyan-500/20'
                     >
                       {tag}
                     </span>
@@ -97,17 +96,17 @@ const Projects = () => {
                 </div>
 
                 {/* Links */}
-                <div className='flex gap-3 pt-4 border-t border-white/10'>
+                <div className='flex gap-3 pt-4 border-t border-black/10'>
                   <a
                     href={project.github}
-                    className='flex-1 flex items-center justify-center gap-2 bg-white/10 hover:bg-cyan-500/20 text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium'
+                    className='flex-1 flex items-center justify-center gap-2 bg-black/5 hover:bg-black/10 text-gray-700 hover:text-black px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium'
                   >
                     <Github className='w-4 h-4' />
                     Code
                   </a>
                   <a
                     href={project.live}
-                    className='flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-400 to-blue-600 text-black px-4 py-2 rounded-lg hover:shadow-lg hover:shadow-cyan-400/50 transition-all duration-300 text-sm font-medium'
+                    className='flex-1 flex items-center justify-center gap-2 border-2 border-black text-black px-4 py-2 rounded-lg hover:bg-black hover:text-white transition-all duration-300 text-sm font-medium'
                   >
                     <ExternalLink className='w-4 h-4' />
                     Live
