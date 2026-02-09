@@ -48,8 +48,8 @@ const Projects = () => {
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Section Header */}
         <div className='text-center mb-16'>
-          <h2 className='text-4xl md:text-5xl font-bold mb-4'>
-            <span className='text-black'>
+          <h2 className='text-3xl md:text-3xl font-bold mb-4'>
+            <span className='text-black '>
               Featured Projects
             </span>
           </h2>

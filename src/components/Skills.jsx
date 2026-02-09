@@ -89,7 +89,7 @@ const Skills = () => {
         {/* Skills Section */}
         <div className='mb-20'>
           <div className='text-center mb-16'>
-            <h2 className='text-4xl md:text-5xl font-bold mb-4'>
+            <h2 className='text-3xl md:text-3xl font-bold mb-4'>
               <span className='text-black'>
                 Skills & Expertise
               </span>
@@ -138,7 +138,7 @@ const Skills = () => {
         {/* Services Section */}
         <div>
           <div className='text-center mb-16'>
-            <h2 className='text-4xl md:text-5xl font-bold mb-4'>
+            <h2 className='text-3xl md:text-3xl font-bold mb-4'>
               <span className='text-black'>
                 Services
               </span>

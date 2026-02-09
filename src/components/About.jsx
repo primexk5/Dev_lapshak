@@ -32,7 +32,7 @@ const About = () => {
           {/* Left Content */}
           <div className='space-y-8'>
             <div>
-              <h2 className='text-4xl md:text-5xl font-bold mb-4'>
+              <h2 className='text-3xl md:text-3xl font-bold mb-4'>
                 About
                 <span className='bg-blue-500 bg-clip-text text-transparent ml-2'>
                   Me
