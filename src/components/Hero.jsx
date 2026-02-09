@@ -53,7 +53,7 @@ const Hero = () => {
                 href="https://wa.me/qr/2FMTN5ATORBSL1"
                 target="_blank"
                 rel="noopener noreferrer"
-                className='border-2 border-black text-black font-semibold px-8 py-3 rounded-lg hover:bg-black hover:text-white transition-all duration-300 flex items-center justify-center'
+                className='border border-gray-300 text-black font-semibold px-8 py-3 rounded-lg hover:bg-black hover:text-white transition-all duration-300 flex items-center justify-center'
               >
                 Let's Connect
               </a>

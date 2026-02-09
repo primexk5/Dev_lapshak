@@ -106,7 +106,7 @@ const Projects = () => {
                   </a>
                   <a
                     href={project.live}
-                    className='flex-1 flex items-center justify-center gap-2 border-2 border-black text-black px-4 py-2 rounded-lg hover:bg-black hover:text-white transition-all duration-300 text-sm font-medium'
+                    className='flex-1 flex items-center justify-center gap-2 border border-gray-300 text-black px-4 py-2 rounded-lg hover:bg-black hover:text-white transition-all duration-300 text-sm font-medium'
                   >
                     <ExternalLink className='w-4 h-4' />
                     Live
