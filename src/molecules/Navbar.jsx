@@ -43,7 +43,7 @@ const Navbar = () => {
 
           {/* CTA Button */}
           <div className='hidden md:block'>
-            <button className='border-2 border-black text-black font-semibold px-6 py-2 rounded-xl hover:bg-black hover:text-white transition-all duration-300'>..
+            <button className='border border-gray-300 text-black font-semibold px-6 py-2 rounded-xl hover:bg-black hover:text-white transition-all duration-300'>..
               <a href="https://web.facebook.com/kupsi.barnabas/">Lets Talk</a>
             </button>
           </div>
@@ -85,7 +85,7 @@ const Navbar = () => {
               {link.name}
             </a>
           ))}
-           <button className='w-full mt-4 border-2 border-black text-black font-semibold px-6 py-2 rounded-xl hover:bg-black hover:text-white transition-all duration-300'>..
+           <button className='w-full mt-4 border border-gray-300 text-black font-semibold px-6 py-2 rounded-xl hover:bg-black hover:text-white transition-all duration-300'>..
               <a href="https://web.facebook.com/kupsi.barnabas/">Lets Talk</a>
             </button>
         </div>
