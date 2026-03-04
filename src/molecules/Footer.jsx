@@ -83,7 +83,7 @@ const Footer = () => {
         <div className='border-t border-white/10 py-8'>
           <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
             <p className='text-sm text-gray-500 flex items-center gap-1'>
-              © {currentYear} Dev_lapshak. Made with
+              © {currentYear} Dev_lapshak
             </p>
           </div>
         </div>
