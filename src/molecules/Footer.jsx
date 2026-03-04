@@ -1,5 +1,5 @@
 import React from 'react'
-import { Github, Linkedin, Twitter, Mail, Heart } from 'lucide-react'
+import { Github, Linkedin, Twitter, Mail,  } from 'lucide-react'
 import { SiDocker, SiGithub } from 'react-icons/si'
 
 const Footer = () => {
@@ -84,8 +84,6 @@ const Footer = () => {
           <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
             <p className='text-sm text-gray-500 flex items-center gap-1'>
               © {currentYear} Dev_lapshak. Made with
-              <Heart className='w-4 h-4 text-red-500' />
-              using React & Tailwind CSS
             </p>
           </div>
         </div>
