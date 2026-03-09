@@ -62,6 +62,10 @@ const Skills = () => {
       description: 'Building responsive, modern websites with React and Next.js'
     },
     {
+       title: 'Mobile Development',
+       description: 'Cross-platform mobile app development with React Native'
+    },
+    {
       title: 'Full Stack Development',
       description: 'End-to-end application development with Node.js and PostgreSQL'
     },
