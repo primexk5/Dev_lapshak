@@ -8,7 +8,7 @@ const Projects = () => {
       id: 1,
       title: 'Church Website',
       description: 'Modern website for a local church featuring sermon archives, event calendar, and donation system.',
-      tags: ['React', 'Node.js', 'Tailwind CSS', 'Framer Motion'],
+      tags: ['React', 'Node.js', 'Tailwind CSS', 'Framer Motion', 'Express'],
       image: 'https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=500&h=300&fit=crop',
       github: 'https://github.com/primexk5/Cocin-Rashik',
       live: 'https://cocin-rashik.netlify.app/'
@@ -31,16 +31,25 @@ const Projects = () => {
       github: 'https://github.com/primexk5/showroom',
       live: 'https://showroo.netlify.app'
     }
-    // },
-    // {
-    //   id: 4,
-    //   title: 'Weather Forecast App',
-    //   description: 'Real-time weather application with location services, forecasts, and beautiful UI animations.',
-    //   tags: ['React', 'API Integration', 'Tailwind CSS', 'Axios'],
-    //   image: 'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=500&h=300&fit=crop',
-    //   github: '#',
-    //   live: '#'
-    // }
+    ,
+    {
+      id: 4,
+      title: 'Zeteo',
+      description: 'Dapp built with starknet cairo ZK using Garaga.',
+      tags: ['Next.js', 'API Integration with redis', 'Tailwind CSS', 'Axios','cairo','Garaga', 'Blockchain'],
+      image: 'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=500&h=300&fit=crop',
+      github: '#',
+      live: 'https://zeteo-seven.vercel.app'
+    },
+    {
+      id: 5,
+      title: 'HueFi',
+      description: 'Dapp built with starknet cairo ZK using Garaga.',
+      tags: ['Next.js', 'Tailwind CSS', 'Axios','cairo','Blockchain'],
+      image: 'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=500&h=300&fit=crop',
+      github: '#',
+      live: 'https://hue-fi-fqo8.vercel.app/'
+    }
   ]
 
   return (
@@ -68,9 +77,10 @@ const Projects = () => {
               {/* Image Container */}
               <div className='relative h-48 overflow-hidden bg-gray-100'>
                 <img
-                  src={project.image}
+                  src={project.live && project.live !== '#' ? `https://api.microlink.io/?url=${encodeURIComponent(project.live)}&screenshot=true&meta=false&embed=screenshot.url&prerender=true&waitFor=5000` : project.image}
                   alt={project.title}
                   className='w-full h-full object-cover group-hover:scale-110 transition-transform duration-300'
+                  loading='lazy'
                 />
               </div>
 
