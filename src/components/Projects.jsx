@@ -20,7 +20,7 @@ const Projects = () => {
       tags: ['Next.js', 'Node.js', 'PostgreSQL', 'Tailwind CSS', 'Express', 'Docker'],
       image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=500&h=300&fit=crop',
       github: '#',
-      live: '#'
+      live: 'https://dulcet-fudge-77efa0.netlify.app/'
     },
     {
       id: 3,
