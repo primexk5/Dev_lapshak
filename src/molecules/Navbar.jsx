@@ -20,7 +20,7 @@ const Navbar = () => {
           <div className='flex-shrink-0'>
             <span className='text-xl md:text-2xl font-bold text-black flex items-center'>
               <img className='w-10 mr-5' src="/logo.png" alt="" />
-              <h1>Dev_lapshak</h1>
+              <h1 className='text-gray-700'>Dev_lapshak</h1>
 
             </span>
           </div>

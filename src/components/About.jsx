@@ -26,7 +26,7 @@ const About = () => {
   ]
 
   return (
-    <section id='about' className='py-20 bg-gradient-to-b from-black to-gray-900'>
+    <section id='about' className='py-20 bg-black'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-12 items-center'>
           {/* Left Content */}
@@ -34,11 +34,11 @@ const About = () => {
             <div>
               <h2 className='text-3xl md:text-3xl font-bold mb-4'>
                 About
-                <span className='bg-blue-500 bg-clip-text text-transparent ml-2'>
+                <span className='ml-2 text-gray-500'>
                   Me
                 </span>
               </h2>
-              <div className='h-1 w-20 bg-gradient-to-r from-cyan-400 to-blue-500 rounded'></div>
+              <div className='h-1 w-20 bg-gray-400 rounded'></div>
             </div>
 
             <p className='text-lg text-gray-400 leading-relaxed'>
@@ -79,7 +79,7 @@ const About = () => {
               return (
                 <div
                   key={index}
-                  className='bg-gradient-to-br from-cyan-500/10 to-purple-500/10 border border-white/10 rounded-xl p-6 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 group'
+                  className='bg-white/5 border border-white/10 rounded-xl p-6 hover:border-cyan-500/50 hover:shadow-lg transition-all duration-300 group'
                 >
                   <div className='mb-4'>
                     <div className='p-3 bg-cyan-500/20 rounded-lg w-fit text-cyan-400 group-hover:scale-110 transition-transform'>
@@ -97,18 +97,18 @@ const About = () => {
             })}
 
             {/* Stats Box */}
-            <div className='sm:col-span-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 rounded-xl p-6'>
+            <div className='sm:col-span-2 bg-white/5 border border-cyan-500/30 rounded-xl p-6'>
               <div className='grid grid-cols-3 gap-4 text-center'>
                 <div>
-                  <p className='text-2xl font-bold text-cyan-400'>20+</p>
+                  <p className='text-2xl font-bold text-gray-500'>20+</p>
                   <p className='text-xs text-gray-400 mt-1'>Projects</p>
                 </div>
                 <div>
-                  <p className='text-2xl font-bold text-blue-400'>2+</p>
+                  <p className='text-2xl font-bold text-gray-500'>2+</p>
                   <p className='text-xs text-gray-400 mt-1'>Years Exp</p>
                 </div>
                 <div>
-                  <p className='text-2xl font-bold text-purple-400'>100%</p>
+                  <p className='text-2xl font-bold text-gray-500'>100%</p>
                   <p className='text-xs text-gray-400 mt-1'>Satisfied</p>
                 </div>
               </div>

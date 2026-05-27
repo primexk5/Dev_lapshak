@@ -73,9 +73,9 @@ const Contact = () => {
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Section Header */}
         <div className='text-center mb-16'>
-          <h2 className='text-3xl md:text-3xl text-white font-bold mb-4'>
+            <h2 className='text-3xl md:text-3xl text-white font-bold mb-4'>
             Get In
-            <span className='bg-white bg-clip-text text-transparent ml-2'>
+            <span className='ml-2 text-white'>
               Touch
             </span>
           </h2>
@@ -93,7 +93,7 @@ const Contact = () => {
                 <a
                   key={index}
                   href={info.href}
-                  className='flex gap-4 p-6 bg-gradient-to-br from-white/5 to-white/0 border border-white/10 rounded-xl hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 group'
+                  className='flex gap-4 p-6 bg-white/5 border border-white/10 rounded-xl hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 group'
                 >
                   <div className='flex-shrink-0'>
                     <div className='p-3 bg-cyan-500/20 rounded-lg text-cyan-400 group-hover:scale-110 transition-transform'>
@@ -118,7 +118,7 @@ const Contact = () => {
                   <a
                     key={social}
                     href='#'
-                    className='p-3 bg-white/10 hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-500/50 rounded-lg transition-all duration-300 hover:scale-110'
+                    className='p-3 bg-neutral-800 hover:bg-neutral-700 border border-white/10 hover:border-cyan-500/50 rounded-lg transition-all duration-300 hover:scale-110'
                   >
                     <span className='text-gray-400 hover:text-cyan-400 text-sm font-semibold'>
                       {social[0]}
@@ -131,7 +131,7 @@ const Contact = () => {
 
           {/* Contact Form */}
           <div className='lg:col-span-2'>
-            <form ref={form} onSubmit={handleSubmit} className='space-y-6 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 border border-white/10 rounded-xl p-8 hover:border-cyan-500/30 transition-all duration-300'>
+            <form ref={form} onSubmit={handleSubmit} className='space-y-6 bg-white/5 border border-white/10 rounded-xl p-8 hover:border-cyan-500/30 transition-all duration-300'>
               {/* Name Input */}
               <div>
                 <label className='block text-white font-semibold mb-2'>Your Name</label>
@@ -192,7 +192,7 @@ const Contact = () => {
               <button
                 type='submit'
                 disabled={isSubmitting}
-                className='w-full bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-bold py-3 rounded-lg hover:shadow-2xl hover:shadow-cyan-400/50 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed'
+                className='w-full bg-cyan-500 text-black font-bold py-3 rounded-lg hover:shadow-2xl hover:shadow-cyan-400/50 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed'
               >
                 {submitted ? (
                   <>
