@@ -8,8 +8,7 @@ const Footer = () => {
   const socialLinks = [
     { icon: Github, label: 'GitHub', href: 'https://github.com/primexk5' },
     { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/barnabas-lapshak-1866673a5?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app' },
-    { icon: Twitter, label: 'Twitter', href: 'https://x.com/dev_lapshak' },
-    // { icon: Mail, label: 'Email', href: 'lapshakbarnabas@gmail.com' }
+    { icon: Twitter, label: 'Twitter', href: 'https://x.com/dev_lapshak' }
   ]
 
   const quickLinks = [

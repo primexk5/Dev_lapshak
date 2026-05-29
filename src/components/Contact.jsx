@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { Mail, Phone, MapPin, Send, Check } from 'lucide-react'
 import emailjs from '@emailjs/browser'
+import { useInView } from '../hooks/useInView'
 
 const Contact = () => {
   const form = useRef()
@@ -47,6 +48,9 @@ const Contact = () => {
       })
   }
 
+  const [headingRef, headingVisible] = useInView()
+  const [contentRef, contentVisible] = useInView()
+
   const contactInfo = [
     {
       icon: Mail,
@@ -72,7 +76,7 @@ const Contact = () => {
     <section id='contact' className='py-20 bg-black'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Section Header */}
-        <div className='text-center mb-16'>
+        <div ref={headingRef} className={`text-center mb-16 fade-up ${headingVisible ? 'visible' : ''}`}>
             <h2 className='text-3xl md:text-3xl text-white font-bold mb-4'>
             Get In
             <span className='ml-2 text-white'>
@@ -84,7 +88,7 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
+        <div ref={contentRef} className={`grid grid-cols-1 lg:grid-cols-3 gap-8 fade-up delay-150 ${contentVisible ? 'visible' : ''}`}>
           {/* Contact Info */}
           <div className='space-y-6'>
             {contactInfo.map((info, index) => {
@@ -110,23 +114,6 @@ const Contact = () => {
               )
             })}
 
-            {/* Social Links */}
-            {/* <div className='pt-6 border-t border-white/10'>
-              <h3 className='text-white font-bold mb-4'>Follow Me</h3>
-              <div className='flex gap-4'>
-                {['GitHub', 'LinkedIn', 'Twitter'].map((social) => (
-                  <a
-                    key={social}
-                    href='#'
-                    className='p-3 bg-neutral-800 hover:bg-neutral-700 border border-white/10 hover:border-cyan-500/50 rounded-lg transition-all duration-300 hover:scale-110'
-                  >
-                    <span className='text-gray-400 hover:text-cyan-400 text-sm font-semibold'>
-                      {social[0]}
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </div> */}
           </div>
 
           {/* Contact Form */}

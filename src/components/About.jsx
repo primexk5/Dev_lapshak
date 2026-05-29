@@ -1,7 +1,10 @@
 import React from 'react'
 import { Award, Target, Lightbulb, Users } from 'lucide-react'
+import { useInView } from '../hooks/useInView'
 
 const About = () => {
+  const [leftRef, leftVisible] = useInView()
+  const [rightRef, rightVisible] = useInView()
   const highlights = [
     {
       icon: Target,
@@ -30,7 +33,7 @@ const About = () => {
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-12 items-center'>
           {/* Left Content */}
-          <div className='space-y-8'>
+          <div ref={leftRef} className={`space-y-8 fade-up ${leftVisible ? 'visible' : ''}`}>
             <div>
               <h2 className='text-3xl md:text-3xl font-bold mb-4'>
                 About
@@ -56,10 +59,6 @@ const About = () => {
                   <span className='text-cyan-400 font-bold mt-1'>→</span>
                   <span>Design and develop full-stack web applications</span>
                 </li>
-                {/* <li className='flex items-start gap-3'>
-                  <span className='text-cyan-400 font-bold mt-1'>→</span>
-                  <span>Implement CI/CD pipelines and DevOps solutions</span>
-                </li> */}
                 <li className='flex items-start gap-3'>
                   <span className='text-cyan-400 font-bold mt-1'>→</span>
                   <span>Optimize performance and scalability</span>
@@ -73,7 +72,7 @@ const About = () => {
           </div>
 
           {/* Right Content - Highlights */}
-          <div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
+          <div ref={rightRef} className={`grid grid-cols-1 sm:grid-cols-2 gap-6 fade-up delay-150 ${rightVisible ? 'visible' : ''}`}>
             {highlights.map((item, index) => {
               const Icon = item.icon
               return (

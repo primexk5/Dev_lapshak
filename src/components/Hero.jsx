@@ -1,5 +1,5 @@
 import React from 'react'
-import { ArrowRight, Code2, Zap, Bot, Users } from 'lucide-react'
+import { Code2, Zap, Bot, Users } from 'lucide-react'
 import {
   SiJavascript,
   SiReact,
@@ -12,14 +12,18 @@ import {
   SiGithub,
   SiTailwindcss
 } from 'react-icons/si'
+import { useInView } from '../hooks/useInView'
 
 const Hero = () => {
+  const [leftRef, leftVisible] = useInView()
+  const [rightRef, rightVisible] = useInView()
+
   return (
-    <div className='min-h-screen bg-white pt-24 pb-12'>
+    <div id='home' className='min-h-screen bg-white pt-24 pb-12'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-12 items-center'>
           {/* Left Content */}
-          <div className='space-y-8'>
+          <div ref={leftRef} className={`space-y-8 fade-up ${leftVisible ? 'visible' : ''}`}>
             {/* Badge */}
             <div className='inline-flex items-center gap-2 bg-black/5 border border-black/10 rounded-full px-4 py-2'>
               <Zap className='w-4 h-4 text-cyan-500' />
@@ -42,14 +46,7 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <div className='flex flex-col sm:flex-row gap-4 pt-4'>
-                {/* <a 
-                  href="#projects"
-                  className='group bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-semibold px-8 py-3 rounded-lg hover:shadow-2xl hover:shadow-cyan-400/50 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2'
-                >
-                  View My Work
-                  <ArrowRight className='w-5 h-5 group-hover:translate-x-1 transition-transform' />
-                </a> */}
-              <a 
+              <a
                 href="https://wa.me/qr/2FMTN5ATORBSL1"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -77,11 +74,8 @@ const Hero = () => {
           </div>
 
           {/* Right Side - Tech Stack Grid */}
-          <div className='space-y-8'>
+          <div ref={rightRef} className={`space-y-8 fade-up delay-150 ${rightVisible ? 'visible' : ''}`}>
             <div className='relative'>
-              {/* Animated Background */}
-              {/* <div className='absolute inset-0 bg-gradient-to-br from-white/5 to-white/0 rounded-2xl blur-3xl'></div> */}
-              
               {/* Tech Stack Grid */}
               <div className='relative bg-white border border-black/10 rounded-2xl p-8 shadow-xl'>
                 <h3 className='text-lg font-bold text-black mb-8 flex items-center gap-2'>
@@ -90,7 +84,6 @@ const Hero = () => {
                 </h3>
 
                 <div className='grid grid-cols-3 gap-6 sm:grid-cols-4 md:grid-cols-3'>
-                  {/* JavaScript */}
                   <div className='group flex flex-col items-center justify-center gap-3 p-4 rounded-lg hover:bg-black/5 transition-all duration-300 cursor-pointer'>
                     <div className='p-3 bg-yellow-500/10 rounded-lg group-hover:scale-110 transition-transform'>
                       <SiJavascript className='w-8 h-8 text-yellow-500' />
@@ -98,7 +91,6 @@ const Hero = () => {
                     <span className='text-xs text-gray-600 text-center group-hover:text-black transition-colors'>JavaScript</span>
                   </div>
 
-                  {/* TypeScript */}
                   <div className='group flex flex-col items-center justify-center gap-3 p-4 rounded-lg hover:bg-black/5 transition-all duration-300 cursor-pointer'>
                     <div className='p-3 bg-blue-500/10 rounded-lg group-hover:scale-110 transition-transform'>
                       <SiTypescript className='w-8 h-8 text-blue-600' />
@@ -106,7 +98,6 @@ const Hero = () => {
                     <span className='text-xs text-gray-600 text-center group-hover:text-black transition-colors'>TypeScript</span>
                   </div>
 
-                  {/* React */}
                   <div className='group flex flex-col items-center justify-center gap-3 p-4 rounded-lg hover:bg-black/5 transition-all duration-300 cursor-pointer'>
                     <div className='p-3 bg-cyan-500/10 rounded-lg group-hover:scale-110 transition-transform'>
                       <SiReact className='w-8 h-8 text-cyan-500' />
@@ -114,7 +105,6 @@ const Hero = () => {
                     <span className='text-xs text-gray-600 text-center group-hover:text-black transition-colors'>React</span>
                   </div>
 
-                  {/* Next.js */}
                   <div className='group flex flex-col items-center justify-center gap-3 p-4 rounded-lg hover:bg-black/5 transition-all duration-300 cursor-pointer'>
                     <div className='p-3 bg-black/5 rounded-lg group-hover:scale-110 transition-transform'>
                       <SiNextdotjs className='w-8 h-8 text-black' />
@@ -122,7 +112,6 @@ const Hero = () => {
                     <span className='text-xs text-gray-600 text-center group-hover:text-black transition-colors'>Next.js</span>
                   </div>
 
-                  {/* Node.js */}
                   <div className='group flex flex-col items-center justify-center gap-3 p-4 rounded-lg hover:bg-black/5 transition-all duration-300 cursor-pointer'>
                     <div className='p-3 bg-green-500/10 rounded-lg group-hover:scale-110 transition-transform'>
                       <SiNodedotjs className='w-8 h-8 text-green-500' />
@@ -130,7 +119,6 @@ const Hero = () => {
                     <span className='text-xs text-gray-600 text-center group-hover:text-black transition-colors'>Node.js</span>
                   </div>
 
-                  {/* Express */}
                   <div className='group flex flex-col items-center justify-center gap-3 p-4 rounded-lg hover:bg-black/5 transition-all duration-300 cursor-pointer'>
                     <div className='p-3 bg-black/5 rounded-lg group-hover:scale-110 transition-transform'>
                       <SiExpress className='w-8 h-8 text-black' />
@@ -138,7 +126,6 @@ const Hero = () => {
                     <span className='text-xs text-gray-600 text-center group-hover:text-black transition-colors'>Express</span>
                   </div>
 
-                  {/* PostgreSQL */}
                   <div className='group flex flex-col items-center justify-center gap-3 p-4 rounded-lg hover:bg-black/5 transition-all duration-300 cursor-pointer'>
                     <div className='p-3 bg-blue-500/10 rounded-lg group-hover:scale-110 transition-transform'>
                       <SiPostgresql className='w-8 h-8 text-blue-500' />
@@ -146,7 +133,6 @@ const Hero = () => {
                     <span className='text-xs text-gray-600 text-center group-hover:text-black transition-colors'>PostgreSQL</span>
                   </div>
 
-                  {/* Docker */}
                   <div className='group flex flex-col items-center justify-center gap-3 p-4 rounded-lg hover:bg-black/5 transition-all duration-300 cursor-pointer'>
                     <div className='p-3 bg-blue-500/10 rounded-lg group-hover:scale-110 transition-transform'>
                       <SiDocker className='w-8 h-8 text-blue-600' />
@@ -154,7 +140,6 @@ const Hero = () => {
                     <span className='text-xs text-gray-600 text-center group-hover:text-black transition-colors'>Docker</span>
                   </div>
 
-                  {/* GitHub */}
                   <div className='group flex flex-col items-center justify-center gap-3 p-4 rounded-lg hover:bg-black/5 transition-all duration-300 cursor-pointer'>
                     <div className='p-3 bg-black/5 rounded-lg group-hover:scale-110 transition-transform'>
                       <SiGithub className='w-8 h-8 text-black' />
@@ -162,7 +147,6 @@ const Hero = () => {
                     <span className='text-xs text-gray-600 text-center group-hover:text-black transition-colors'>GitHub</span>
                   </div>
 
-                  {/* Tailwind CSS */}
                   <div className='group flex flex-col items-center justify-center gap-3 p-4 rounded-lg hover:bg-black/5 transition-all duration-300 cursor-pointer'>
                     <div className='p-3 bg-cyan-500/10 rounded-lg group-hover:scale-110 transition-transform'>
                       <SiTailwindcss className='w-8 h-8 text-cyan-500' />
@@ -170,7 +154,6 @@ const Hero = () => {
                     <span className='text-xs text-gray-600 text-center group-hover:text-black transition-colors'>Tailwind</span>
                   </div>
 
-                  {/* Collaboration & Communication */}
                   <div className='group flex flex-col items-center justify-center gap-3 p-4 rounded-lg hover:bg-black/5 transition-all duration-300 cursor-pointer'>
                     <div className='p-3 bg-emerald-500/10 rounded-lg group-hover:scale-110 transition-transform'>
                       <Users className='w-8 h-8 text-emerald-500' />
@@ -178,7 +161,6 @@ const Hero = () => {
                     <span className='text-xs text-gray-600 text-center group-hover:text-black transition-colors'>Collaboration & Communication</span>
                   </div>
 
-                  {/* AI Utilization */}
                   <div className='group flex flex-col items-center justify-center gap-3 p-4 rounded-lg hover:bg-black/5 transition-all duration-300 cursor-pointer'>
                     <div className='p-3 bg-orange-500/10 rounded-lg group-hover:scale-110 transition-transform'>
                       <Bot className='w-8 h-8 text-orange-500' />

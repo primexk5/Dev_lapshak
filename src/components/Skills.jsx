@@ -1,5 +1,6 @@
 import React from 'react'
 import { Code2, Zap, Shield, Gauge } from 'lucide-react'
+import { useInView } from '../hooks/useInView'
 import {
   SiJavascript,
   SiReact,
@@ -13,6 +14,10 @@ import {
 } from 'react-icons/si'
 
 const Skills = () => {
+  const [skillsHeadRef, skillsHeadVisible] = useInView()
+  const [skillsGridRef, skillsGridVisible] = useInView()
+  const [servicesHeadRef, servicesHeadVisible] = useInView()
+  const [servicesGridRef, servicesGridVisible] = useInView()
   const skillCategories = [
     {
       title: 'Frontend',
@@ -40,8 +45,7 @@ const Skills = () => {
       skills: [
         { name: 'Docker', icon: SiDocker },
         { name: 'CI/CD', icon: null },
-        { name: 'GitHub', icon: SiGithub },
-        // { name: 'AWS', icon: null }
+        { name: 'GitHub', icon: SiGithub }
       ]
     },
     {
@@ -50,7 +54,6 @@ const Skills = () => {
       skills: [
         { name: 'Full Stack', icon: null },
         { name: 'Database Design', icon: null },
-        // { name: 'Cloud Native', icon: null },
         { name: 'Performance Optimization', icon: null }
       ]
     }
@@ -92,7 +95,7 @@ const Skills = () => {
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Skills Section */}
         <div className='mb-20'>
-          <div className='text-center mb-16'>
+          <div ref={skillsHeadRef} className={`text-center mb-16 fade-up ${skillsHeadVisible ? 'visible' : ''}`}>
             <h2 className='text-3xl md:text-3xl font-bold mb-4'>
               <span className='text-black'>
                 Skills & Expertise
@@ -104,7 +107,7 @@ const Skills = () => {
           </div>
 
           {/* Skills Grid */}
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
+          <div ref={skillsGridRef} className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 fade-up delay-150 ${skillsGridVisible ? 'visible' : ''}`}>
             {skillCategories.map((category, index) => (
               <div
                 key={index}
@@ -141,7 +144,7 @@ const Skills = () => {
 
         {/* Services Section */}
         <div>
-          <div className='text-center mb-16'>
+          <div ref={servicesHeadRef} className={`text-center mb-16 fade-up ${servicesHeadVisible ? 'visible' : ''}`}>
             <h2 className='text-3xl md:text-3xl font-bold mb-4'>
               <span className='text-black'>
                 Services
@@ -153,7 +156,7 @@ const Skills = () => {
           </div>
 
           {/* Services Grid */}
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+          <div ref={servicesGridRef} className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 fade-up delay-150 ${servicesGridVisible ? 'visible' : ''}`}>
             {services.map((service, index) => (
               <div
                 key={index}

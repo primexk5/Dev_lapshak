@@ -1,8 +1,11 @@
 import React from 'react'
 import { ExternalLink, Github } from 'lucide-react'
 import { SiReact, SiNextdotjs, SiNodedotjs, SiPostgresql, SiDocker, SiTailwindcss } from 'react-icons/si'
+import { useInView } from '../hooks/useInView'
 
 const Projects = () => {
+  const [headingRef, headingVisible] = useInView()
+  const [gridRef, gridVisible] = useInView()
   const projects = [
     {
       id: 1,
@@ -56,7 +59,7 @@ const Projects = () => {
     <section id='projects' className='py-20 bg-white'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Section Header */}
-        <div className='text-center mb-16'>
+        <div ref={headingRef} className={`text-center mb-16 fade-up ${headingVisible ? 'visible' : ''}`}>
           <h2 className='text-3xl md:text-3xl font-bold mb-4'>
             <span className='text-black '>
               Featured Projects
@@ -68,7 +71,7 @@ const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+        <div ref={gridRef} className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 fade-up delay-150 ${gridVisible ? 'visible' : ''}`}>
           {projects.map((project) => (
             <div
               key={project.id}

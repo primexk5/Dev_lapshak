@@ -10,7 +10,7 @@ import Contact from './components/Contact.jsx'
 function App() {
   return (
     <>
-      <div className='bg-black'>
+      <div>
         <Navbar />
         <Hero />
         <Projects />
