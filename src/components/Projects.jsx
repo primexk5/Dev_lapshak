@@ -52,6 +52,78 @@ const Projects = () => {
       image: 'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=500&h=300&fit=crop',
       github: '#',
       live: 'https://hue-fi-fqo8.vercel.app/'
+    },
+    {
+      id: 6,
+      title: 'Benue SEMA',
+      description: 'Official website for the Benue State Entrepreneurs and Manufacturers Association, featuring news, events, and member resources.',
+      tags: ['React', 'Tailwind CSS', 'Node.js', 'AI integration'],
+      image: '',
+      github: '#',
+      live: 'https://www.benuesema.com/'
+    },
+    {
+      id: 7,
+      title: 'Benue Blockchain Fest',
+      description: 'Event platform for the Benue Blockchain Fest, showcasing speakers, schedules, and registration for the blockchain conference.',
+      tags: ['React', 'Tailwind CSS', 'Blockchain', 'Events'],
+      image: '',
+      github: '#',
+      live: 'https://www.benueblockchainfest.com/'
+    },
+    {
+      id: 8,
+      title: 'Divine Mandate Worldwide',
+      description: 'Ministry website for Divine Mandate Worldwide featuring sermons, events, and outreach programs.',
+      tags: ['React', 'Tailwind CSS', 'Node.js'],
+      image: '',
+      github: '#',
+      live: 'https://www.divinemandateworldwide.org/'
+    },
+    {
+      id: 9,
+      title: 'Elysian Beddings',
+      description: 'Elegant e-commerce platform for premium bedding products with product catalog and seamless checkout experience.',
+      tags: ['Next.js', 'Tailwind CSS', 'E-Commerce'],
+      image: '',
+      github: '#',
+      live: 'https://elysian-beddings.vercel.app/'
+    },
+    {
+      id: 10,
+      title: 'Seven Hills Apartment',
+      description: 'Real estate listing and booking platform for Seven Hills Apartment with room showcases and reservation features.',
+      tags: ['React', 'Tailwind CSS', 'Real Estate'],
+      image: '',
+      github: '#',
+      live: 'https://seven-hills-apartment.vercel.app/'
+    },
+    {
+      id: 11,
+      title: "Jostin's Helping Hand",
+      description: 'Non-profit organization website for Jostin\'s Helping Hand featuring donation, volunteer, and outreach program information.',
+      tags: ['React', 'Tailwind CSS', 'Non-Profit'],
+      image: '',
+      github: '#',
+      live: 'https://www.jostinshelpinghand.org/'
+    },
+    {
+      id: 12,
+      title: 'Task Manager',
+      description: 'Productivity app for managing tasks with priority tracking, deadlines, and progress monitoring.',
+      tags: ['React', 'Tailwind CSS', 'Local Storage','Solidity'],
+      image: '',
+      github: '#',
+      live: 'https://task-manager-s.netlify.app/'
+    },
+    {
+      id: 13,
+      title: 'Fralia Conference Hall',
+      description: 'Booking and information platform for Fralia Conference Hall under Benue SEMA, featuring event space details and reservations.',
+      tags: ['React', 'Tailwind CSS', 'Events'],
+      image: '',
+      github: '#',
+      live: 'https://fraliaconferencehall.benuesema.com/'
     }
   ]
 
