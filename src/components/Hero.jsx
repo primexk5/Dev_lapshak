@@ -79,7 +79,7 @@ const Hero = () => {
             <span className="text-ink-soft">Solidity, Cairo, React, and Node.js.</span>
           </p>
         </div>
-
+ 
         {/* Trust & Actions - Spans 2 cols */}
         <div className="md:col-span-2 grid grid-rows-2 gap-4">
           {/* Trust strip inside bento */}
