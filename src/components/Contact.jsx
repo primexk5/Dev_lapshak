@@ -71,14 +71,18 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" className="relative section bg-night text-surface">
+    <section id="contact" className="relative section">
       <div className="container-page relative z-10">
-        <div
-          ref={ref}
-          className={`grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 reveal ${
-            visible ? 'visible' : ''
-          }`}
-        >
+        <div className="bg-night text-[#fafafa] rounded-[2.5rem] p-8 sm:p-12 lg:p-16 shadow-2xl relative overflow-hidden">
+          {/* Subtle noise texture for the dark card */}
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%220.08%22/%3E%3C/svg%3E')] mix-blend-overlay pointer-events-none" />
+          
+          <div
+            ref={ref}
+            className={`grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 relative z-10 reveal ${
+              visible ? 'visible' : ''
+            }`}
+          >
           <div className="lg:col-span-5 space-y-10">
             <div>
               <p className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-accent mb-5">
@@ -242,6 +246,7 @@ const Contact = () => {
               </div>
             </form>
           </div>
+        </div>
         </div>
       </div>
     </section>
