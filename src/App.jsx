@@ -9,17 +9,17 @@ import Contact from './components/Contact.jsx'
 
 function App() {
   return (
-    <>
-      <div>
-        <Navbar />
+    <div className="min-h-screen flex flex-col selection:bg-accent selection:text-white">
+      <Navbar />
+      <main className="flex-1">
         <Hero />
         <Projects />
         <Skills />
         <About />
         <Contact />
-        <Footer />
-      </div>
-    </>
+      </main>
+      <Footer />
+    </div>
   )
 }
 

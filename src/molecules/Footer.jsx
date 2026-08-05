@@ -1,90 +1,93 @@
 import React from 'react'
-import { Github, Linkedin, Twitter, Mail,  } from 'lucide-react'
-import { SiDocker, SiGithub } from 'react-icons/si'
+import { Github, Linkedin, Twitter, ArrowUp } from 'lucide-react'
+
+const socialLinks = [
+  { icon: Github, label: 'GitHub', href: 'https://github.com/primexk5' },
+  {
+    icon: Linkedin,
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/barnabas-lapshak-1866673a5',
+  },
+  { icon: Twitter, label: 'X', href: 'https://x.com/dev_lapshak' },
+]
+
+const navLinks = [
+  { name: 'Work', href: '#projects' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'About', href: '#about' },
+  { name: 'Contact', href: '#contact' },
+]
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear()
-
-  const socialLinks = [
-    { icon: Github, label: 'GitHub', href: 'https://github.com/primexk5' },
-    { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/barnabas-lapshak-1866673a5?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app' },
-    { icon: Twitter, label: 'Twitter', href: 'https://x.com/dev_lapshak' }
-  ]
-
-  const quickLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' }
-  ]
+  const year = new Date().getFullYear()
 
   return (
-    <footer className='bg-black border-t border-white/10'>
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
-        <div className='grid grid-cols-1 md:grid-cols-4 gap-8 mb-8'>
-          {/* Brand */}
-          <div className='space-y-4'>
-            <h3 className='text-xl font-bold text-gray-400'>
-              Dev_lapshak
-            </h3>
-            <p className='text-sm text-gray-400'>
-              Full-stack developer building beautiful, scalable web applications.
+    <footer className="bg-night border-t border-night-line text-surface">
+      <div className="container-page py-14 md:py-16">
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 mb-12">
+          <div className="max-w-sm">
+            <p className="font-serif text-2xl text-surface mb-3">Dev_lapshak</p>
+            <p className="text-sm text-night-muted leading-relaxed">
+              Full stack & blockchain developer in Jos, Nigeria. Building refined web, mobile, and blockchain products
+              for teams that care about craft.
             </p>
           </div>
 
-          {/* Quick Links */}
-          <div className='space-y-4'>
-            <h4 className='text-white font-semibold'>Quick Links</h4>
-            <ul className='space-y-2'>
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className='text-gray-400 hover:text-cyan-400 transition-colors text-sm'
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <div className="flex flex-wrap gap-x-14 gap-y-8">
+            <div>
+              <p className="text-[11px] font-mono uppercase tracking-[0.16em] text-night-muted mb-4">
+                Navigate
+              </p>
+              <ul className="space-y-2.5">
+                {navLinks.map((link) => (
+                  <li key={link.name}>
+                    <a
+                      href={link.href}
+                      className="text-sm text-surface/80 hover:text-accent transition-colors"
+                    >
+                      {link.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Tech Stack */}
-          <div className='space-y-4'>
-            <h4 className='text-white font-semibold'>Tech Stack</h4>
-            <p className='text-sm text-gray-400'>
-              React, Next.js, Node.js, Express, PostgreSQL, Docker, Tailwind CSS & more.
-            </p>
-          </div>
-
-          {/* Social Links */}
-          <div className='space-y-4'>
-            <h4 className='text-white font-semibold'>Connect</h4>
-            <div className='flex gap-4'>
-              {socialLinks.map((social) => {
-                const Icon = social.icon
-                return (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    aria-label={social.label}
-                    className='p-2 bg-white/5 hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-500/50 rounded-lg transition-all duration-300 hover:scale-110'
-                  >
-                    <Icon className='w-5 h-5 text-gray-400 hover:text-cyan-400' />
-                  </a>
-                )
-              })}
+            <div>
+              <p className="text-[11px] font-mono uppercase tracking-[0.16em] text-night-muted mb-4">
+                Social
+              </p>
+              <div className="flex gap-3">
+                {socialLinks.map((s) => {
+                  const Icon = s.icon
+                  return (
+                    <a
+                      key={s.label}
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={s.label}
+                      className="flex h-9 w-9 items-center justify-center rounded-full border border-night-line text-night-muted hover:text-surface hover:border-accent/50 hover:bg-night-soft transition-all"
+                    >
+                      <Icon className="w-4 h-4" />
+                    </a>
+                  )
+                })}
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Divider */}
-        <div className='border-t border-white/10 py-8'>
-          <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
-            <p className='text-sm text-gray-500 flex items-center gap-1'>
-              © {currentYear} Dev_lapshak
-            </p>
-          </div>
+        <div className="pt-8 border-t border-night-line flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <p className="text-xs text-night-muted">
+            © {year} Barnabas Lapshak 
+          </p>
+          <a
+            href="#home"
+            className="inline-flex items-center gap-1.5 text-xs text-night-muted hover:text-surface transition-colors"
+          >
+            Back to top
+            <ArrowUp className="w-3.5 h-3.5" />
+          </a>
         </div>
       </div>
     </footer>

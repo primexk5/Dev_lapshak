@@ -1,96 +1,113 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { Menu, X } from 'lucide-react'
+
+const navLinks = [
+  { name: 'Work', href: '#projects' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'About', href: '#about' },
+  { name: 'Contact', href: '#contact' },
+]
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
-  const toggleMenu = () => setIsOpen(!isOpen)
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
-  const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' }
-  ]
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [isOpen])
 
   return (
-    <nav className='fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-black/5'>
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <div className='flex justify-between items-center h-16 md:h-20'>
-          {/* Logo */}
-          <div className='flex-shrink-0'>
-            <span className='text-xl md:text-2xl font-bold text-black flex items-center'>
-              <img className='w-10 mr-5' src="/logo.png" alt="" />
-              <h1 className='text-gray-700'>Dev_lapshak</h1>
-
+    <header
+      className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 ${
+        isOpen
+          ? 'bg-canvas'
+          : scrolled
+          ? 'bg-canvas/90 backdrop-blur-xl border-b border-line/80 shadow-soft'
+          : 'bg-transparent border-b border-transparent'
+      }`}
+    >
+      <div className="container-page relative z-50">
+        <div className="flex items-center justify-between h-[4.25rem]">
+          <a href="#home" className="flex items-center gap-3 group relative z-50">
+            <span className="text-2xl font-serif tracking-tight text-ink">
+              Dev_lapshak
             </span>
-          </div>
+          </a>
 
-          {/* Desktop Navigation */}
-          <div className='hidden md:block'>
-            <div className='ml-10 flex items-baseline space-x-1 lg:space-x-2'>
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className='text-gray-600 hover:text-black px-3 py-2 rounded-md text-sm lg:text-base font-medium transition-all duration-300 hover:bg-black/5 relative group'
-                >
-                  {link.name}
-                  <span className='absolute bottom-0 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-300'></span>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* CTA Button */}
-          <div className='hidden md:block'>
-            <a href="https://web.facebook.com/kupsi.barnabas/" className='border border-gray-300 text-black font-semibold px-6 py-2 rounded-xl hover:bg-black hover:text-white transition-all duration-300'>
-              Lets Talk
+          <nav className="hidden md:flex items-center gap-1" aria-label="Primary">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="px-3.5 py-2 text-[13px] font-medium text-ink-muted hover:text-ink transition-colors"
+              >
+                {link.name}
+              </a>
+            ))}
+            <a href="#contact" className="btn-primary ml-3 !py-2.5 !px-5 text-[13px]">
+              Hire me
             </a>
-          </div>
+          </nav>
 
-          {/* Mobile menu button */}
-          <div className='md:hidden'>
-            <button
-              onClick={toggleMenu}
-              className='inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-black hover:bg-black/5 focus:outline-none transition-all duration-300'
-            >
-              {isOpen ? (
-                <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              ) : (
-                <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              )}
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => setIsOpen((v) => !v)}
+            className="md:hidden relative z-50 p-2 -mr-2 text-ink"
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isOpen}
+          >
+            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile full-screen menu */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? 'max-h-64 bg-white border-b border-black/5' : 'max-h-0'
+        className={`md:hidden fixed inset-0 top-0 z-40 bg-canvas transition-all duration-300 ${
+          isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
         }`}
       >
-        <div className='px-2 pt-2 pb-3 space-y-1 border-t border-black/5'>
-          {navLinks.map((link) => (
+        <div className="container-page pt-28 pb-10 flex flex-col h-full">
+          <nav className="flex flex-col gap-1" aria-label="Mobile">
+            {navLinks.map((link, i) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="font-serif text-4xl text-ink py-3 border-b border-line"
+                style={{
+                  transitionDelay: isOpen ? `${i * 40}ms` : '0ms',
+                  opacity: isOpen ? 1 : 0,
+                  transform: isOpen ? 'translateY(0)' : 'translateY(8px)',
+                  transition: 'opacity 0.35s ease, transform 0.35s ease',
+                }}
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
+          <div className="mt-auto pt-8">
             <a
-              key={link.name}
-              href={link.href}
-              className='text-gray-600 hover:text-black block px-3 py-2 rounded-md text-base font-medium transition-all duration-300 hover:bg-black/5'
+              href="#contact"
               onClick={() => setIsOpen(false)}
+              className="btn-accent w-full"
             >
-              {link.name}
+              Hire me
             </a>
-          ))}
-           <button className='w-full mt-4 border border-gray-300 text-black font-semibold px-6 py-2 rounded-xl hover:bg-black hover:text-white transition-all duration-300'>..
-              <a href="https://web.facebook.com/kupsi.barnabas/">Lets Talk</a>
-            </button>
+            <p className="mt-4 text-center text-sm text-ink-faint">
+              Open to full-time &amp; contract roles
+            </p>
+          </div>
         </div>
       </div>
-    </nav>
+    </header>
   )
 }
 

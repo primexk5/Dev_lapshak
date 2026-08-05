@@ -1,205 +1,325 @@
-import React from 'react'
-import { ExternalLink, Github } from 'lucide-react'
-import { SiReact, SiNextdotjs, SiNodedotjs, SiPostgresql, SiDocker, SiTailwindcss } from 'react-icons/si'
+import React, { useState } from 'react'
+import { ArrowUpRight, Github, ExternalLink } from 'lucide-react'
 import { useInView } from '../hooks/useInView'
 
-const Projects = () => {
-  const [headingRef, headingVisible] = useInView()
-  const [gridRef, gridVisible] = useInView()
-  const projects = [
-    {
-      id: 1,
-      title: 'Church Website',
-      description: 'Modern website for a local church featuring sermon archives, event calendar, and donation system.',
-      tags: ['React', 'Node.js', 'Tailwind CSS', 'Framer Motion', 'Express'],
-      image: 'https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=500&h=300&fit=crop',
-      github: 'https://github.com/primexk5/Cocin-Rashik',
-      live: 'https://cocin-rashik.netlify.app/'
-    },
-    {
-      id: 2,
-      title: 'E-Commerce Platform',
-      description: 'Full-stack e-commerce solution with real-time inventory management, payment integration, and admin dashboard.',
-      tags: ['Next.js', 'Node.js', 'PostgreSQL', 'Tailwind CSS', 'Express', 'Docker'],
-      image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=500&h=300&fit=crop',
-      github: '#',
-      live: 'https://nest-notch.netlify.app/'
-    },
-    {
-      id: 3,
-      title: 'Movies Website',
-      description: 'Interactive movie discovery platform with search, filtering, and detailed movie information.',
-      tags: ['React', 'TMDB API', 'Tailwind CSS', 'Context API'],
-      image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=500&h=300&fit=crop',
-      github: 'https://github.com/primexk5/showroom',
-      live: 'https://showroo.netlify.app'
-    }
-    ,
-    {
-      id: 4,
-      title: 'Zeteo',
-      description: 'Dapp built with starknet cairo ZK using Garaga.',
-      tags: ['Next.js', 'API Integration with redis', 'Tailwind CSS', 'Axios','cairo','Garaga', 'Blockchain'],
-      image: 'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=500&h=300&fit=crop',
-      github: '#',
-      live: 'https://zeteo-seven.vercel.app'
-    },
-    {
-      id: 5,
-      title: 'HueFi',
-      description: 'Dapp built with starknet cairo ZK using Garaga.',
-      tags: ['Next.js', 'Tailwind CSS', 'Axios','cairo','Blockchain'],
-      image: 'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=500&h=300&fit=crop',
-      github: '#',
-      live: 'https://hue-fi-fqo8.vercel.app/'
-    },
-    {
-      id: 6,
-      title: 'Benue SEMA',
-      description: 'Official website for the Benue State Entrepreneurs and Manufacturers Association, featuring news, events, and member resources.',
-      tags: ['React', 'Tailwind CSS', 'Node.js', 'AI integration'],
-      image: '',
-      github: '#',
-      live: 'https://www.benuesema.com/'
-    },
-    {
-      id: 7,
-      title: 'Benue Blockchain Fest',
-      description: 'Event platform for the Benue Blockchain Fest, showcasing speakers, schedules, and registration for the blockchain conference.',
-      tags: ['React', 'Tailwind CSS', 'Blockchain', 'Events'],
-      image: '',
-      github: '#',
-      live: 'https://www.benueblockchainfest.com/'
-    },
-    {
-      id: 8,
-      title: 'Divine Mandate Worldwide',
-      description: 'Ministry website for Divine Mandate Worldwide featuring sermons, events, and outreach programs.',
-      tags: ['React', 'Tailwind CSS', 'Node.js'],
-      image: '',
-      github: '#',
-      live: 'https://www.divinemandateworldwide.org/'
-    },
-    {
-      id: 9,
-      title: 'Elysian Beddings',
-      description: 'Elegant e-commerce platform for premium bedding products with product catalog and seamless checkout experience.',
-      tags: ['Next.js', 'Tailwind CSS', 'E-Commerce'],
-      image: '',
-      github: '#',
-      live: 'https://elysian-beddings.vercel.app/'
-    },
-    {
-      id: 10,
-      title: 'Seven Hills Apartment',
-      description: 'Real estate listing and booking platform for Seven Hills Apartment with room showcases and reservation features.',
-      tags: ['React', 'Tailwind CSS', 'Real Estate'],
-      image: '',
-      github: '#',
-      live: 'https://seven-hills-apartment.vercel.app/'
-    },
-    {
-      id: 11,
-      title: "Jostin's Helping Hand",
-      description: 'Non-profit organization website for Jostin\'s Helping Hand featuring donation, volunteer, and outreach program information.',
-      tags: ['React', 'Tailwind CSS', 'Non-Profit'],
-      image: '',
-      github: '#',
-      live: 'https://www.jostinshelpinghand.org/'
-    },
-    {
-      id: 12,
-      title: 'Task Manager',
-      description: 'Productivity app for managing tasks with priority tracking, deadlines, and progress monitoring.',
-      tags: ['React', 'Tailwind CSS', 'Local Storage','Solidity'],
-      image: '',
-      github: '#',
-      live: 'https://task-manager-s.netlify.app/'
-    },
-    {
-      id: 13,
-      title: 'Fralia Conference Hall',
-      description: 'Booking and information platform for Fralia Conference Hall under Benue SEMA, featuring event space details and reservations.',
-      tags: ['React', 'Tailwind CSS', 'Events'],
-      image: '',
-      github: '#',
-      live: 'https://fraliaconferencehall.benuesema.com/'
-    }
-  ]
+const projects = [
+  {
+    id: 1,
+    title: 'Hybrid Agent',
+    description: 'A highly secure way to receive commissions locally and internationally on property & vehicle sales — fast and easy.',
+    tags: ['Next.js', 'Fintech', 'Real Estate'],
+    github: '#',
+    live: 'https://hybrid-agent-ecru.vercel.app/',
+    featured: true,
+  },
+  {
+    id: 2,
+    title: "Jostin's Helping Hand",
+    description: 'Non-profit site for donations, volunteering, and community outreach.',
+    tags: ['React', 'Non-Profit'],
+    github: '#',
+    live: 'https://www.jostinshelpinghand.org/',
+    featured: true,
+  },
+  {
+    id: 3,
+    title: 'Benue Blockchain Fest',
+    description: 'Conference site with speakers, schedule, and registration for a regional blockchain event.',
+    tags: ['React', 'Tailwind', 'Web3'],
+    github: '#',
+    live: 'https://www.benueblockchainfest.com/',
+    featured: true,
+  },
+  {
+    id: 4,
+    title: 'Benue SEMA',
+    description: 'Official platform for the Benue State Emergency Management Agency, handling disaster response and updates.',
+    tags: ['React', 'Node.js', 'Emergency Response'],
+    github: '#',
+    live: 'https://www.benuesema.com/',
+    featured: true,
+  },
+  {
+    id: 5,
+    title: 'Benue SEMA Chain',
+    description: 'Blockchain portal for transparent emergency relief funds and secure transactions.',
+    tags: ['Solidity', 'Blockchain', 'Web3'],
+    github: '#',
+    live: 'https://benuesemachain.benuesema.com/',
+  },
+  {
+    id: 6,
+    title: 'IO Fellowship',
+    description: 'Community platform for the IO Fellowship program, connecting members and tracking progress.',
+    tags: ['React', 'Community'],
+    github: '#',
+    live: 'https://io-fellowship.vercel.app/',
+  },
+  {
+    id: 7,
+    title: 'Elysian Beddings',
+    description: 'Premium bedding storefront with product catalog and a clean checkout experience.',
+    tags: ['Next.js', 'E-Commerce'],
+    github: '#',
+    live: 'https://elysian-beddings.vercel.app/',
+  },
+  {
+    id: 8,
+    title: 'Divine Mandate Worldwide',
+    description: 'Official political party platform covering campaigns, news, and announcements.',
+    tags: ['React', 'Node.js', 'Politics'],
+    github: '#',
+    live: 'https://www.divinemandateworldwide.org/',
+  },
+  {
+    id: 9,
+    title: 'Seven Hills Apartment',
+    description: 'Apartment listing and booking experience with room showcases.',
+    tags: ['React', 'Real Estate'],
+    github: '#',
+    live: 'https://seven-hills-apartment.vercel.app/',
+  },
+  {
+    id: 10,
+    title: 'Zeteo Seven',
+    description: 'Starknet dApp with Cairo ZK proofs via Garaga — privacy-focused on-chain interactions.',
+    tags: ['Next.js', 'Cairo', 'Starknet'],
+    github: '#',
+    live: 'https://zeteo-seven.vercel.app/',
+  },
+  {
+    id: 11,
+    title: 'Value Chain Nig Ltd',
+    description: 'Corporate landing page for agricultural value chain management and services.',
+    tags: ['React', 'Corporate'],
+    github: '#',
+    live: 'https://www.valuechainnigltd.org/',
+  },
+  {
+    id: 12,
+    title: 'MSGOBA 2k13',
+    description: 'Alumni association platform for event management, networking, and directory.',
+    tags: ['React', 'Community'],
+    github: '#',
+    live: 'https://www.msgoba2k13.xyz/',
+  },
+  {
+    id: 13,
+    title: 'Fralia Conference Hall',
+    description: 'Venue booking and information platform under Benue SEMA.',
+    tags: ['React', 'Events'],
+    github: '#',
+    live: 'https://fraliaconferencehall.benuesema.com/',
+  },
+]
+
+function screenshotUrl(live) {
+  if (!live || live === '#') return null
+  return `https://api.microlink.io/?url=${encodeURIComponent(
+    live
+  )}&screenshot=true&meta=false&embed=screenshot.url&prerender=true&waitFor=3000`
+}
+
+const ProjectImage = ({ project, className = '' }) => {
+  const [loaded, setLoaded] = useState(false)
+  const [failed, setFailed] = useState(false)
+  const src = screenshotUrl(project.live)
+
+  if (!src || failed) {
+    return (
+      <div
+        className={`flex items-center justify-center bg-gradient-to-br from-accent-soft via-canvas to-line ${className}`}
+      >
+        <span className="font-serif text-3xl text-ink/20 italic">{project.title[0]}</span>
+      </div>
+    )
+  }
 
   return (
-    <section id='projects' className='py-20 bg-white'>
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-        {/* Section Header */}
-        <div ref={headingRef} className={`text-center mb-16 fade-up ${headingVisible ? 'visible' : ''}`}>
-          <h2 className='text-3xl md:text-3xl font-bold mb-4'>
-            <span className='text-black '>
-              Featured Projects
-            </span>
-          </h2>
-          <p className='text-gray-600 text-lg max-w-2xl mx-auto'>
-            Explore my recent work showcasing modern tech stack and best practices
+    <div className={`relative overflow-hidden ${className}`}>
+      {!loaded && <div className="absolute inset-0 img-shimmer" />}
+      <img
+        src={src}
+        alt={`Screenshot of ${project.title}`}
+        loading="lazy"
+        onLoad={() => setLoaded(true)}
+        onError={() => setFailed(true)}
+        className={`w-full h-full object-cover object-top transition-all duration-700 ease-out group-hover:scale-[1.03] ${
+          loaded ? 'opacity-100' : 'opacity-0'
+        }`}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    </div>
+  )
+}
+
+const FeaturedCard = ({ project, index }) => (
+  <article
+    className={`group card-lift rounded-2xl border border-line bg-surface overflow-hidden shadow-soft ${
+      index === 0 ? 'md:col-span-2 lg:col-span-2' : ''
+    }`}
+  >
+    <a
+      href={project.live}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block"
+    >
+      <ProjectImage
+        project={project}
+        className={`w-full ${index === 0 ? 'h-56 sm:h-72 lg:h-80' : 'h-48 sm:h-56'}`}
+      />
+    </a>
+    <div className="p-6 sm:p-7">
+      <div className="flex items-start justify-between gap-4 mb-3">
+        <h3 className="font-serif text-2xl text-ink tracking-tight group-hover:text-accent transition-colors duration-300">
+          {project.title}
+        </h3>
+        <div className="flex items-center gap-2 shrink-0 pt-1">
+          {project.github && project.github !== '#' && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${project.title} source`}
+              className="p-1.5 rounded-full text-ink-faint hover:text-ink hover:bg-canvas transition-colors"
+            >
+              <Github className="w-4 h-4" />
+            </a>
+          )}
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${project.title} live`}
+            className="p-1.5 rounded-full text-ink-faint hover:text-accent hover:bg-accent-soft transition-colors"
+          >
+            <ArrowUpRight className="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+      <p className="text-sm text-ink-muted leading-relaxed mb-5 max-w-prose">
+        {project.description}
+      </p>
+      <div className="flex flex-wrap gap-1.5">
+        {project.tags.map((tag) => (
+          <span key={tag} className="tag">
+            {tag}
+          </span>
+        ))}
+      </div>
+    </div>
+  </article>
+)
+
+const CompactCard = ({ project }) => (
+  <article className="group flex flex-col sm:flex-row gap-0 rounded-xl border border-line bg-surface overflow-hidden hover:border-line-strong hover:shadow-soft transition-all duration-300">
+    <a
+      href={project.live}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="sm:w-44 shrink-0"
+    >
+      <ProjectImage project={project} className="w-full h-36 sm:h-full min-h-[9rem]" />
+    </a>
+    <div className="flex flex-col flex-1 p-5">
+      <div className="flex items-start justify-between gap-3 mb-2">
+        <h3 className="text-base font-semibold text-ink group-hover:text-accent transition-colors">
+          {project.title}
+        </h3>
+        <a
+          href={project.live}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-ink-faint hover:text-ink transition-colors shrink-0"
+          aria-label={`Open ${project.title}`}
+        >
+          <ExternalLink className="w-3.5 h-3.5" />
+        </a>
+      </div>
+      <p className="text-sm text-ink-muted leading-relaxed flex-1 mb-3 line-clamp-2">
+        {project.description}
+      </p>
+      <div className="flex flex-wrap gap-1.5">
+        {project.tags.slice(0, 3).map((tag) => (
+          <span key={tag} className="tag">
+            {tag}
+          </span>
+        ))}
+      </div>
+    </div>
+  </article>
+)
+
+const Projects = () => {
+  const [headRef, headVisible] = useInView()
+  const [featRef, featVisible] = useInView()
+  const [moreRef, moreVisible] = useInView()
+  const [showAll, setShowAll] = useState(false)
+
+  const featured = projects.filter((p) => p.featured)
+  const rest = projects.filter((p) => !p.featured)
+  const visibleRest = showAll ? rest : rest.slice(0, 4)
+
+  return (
+    <section id="projects" className="section bg-canvas relative">
+      <div className="container-page">
+        <div
+          ref={headRef}
+          className={`flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16 reveal ${
+            headVisible ? 'visible' : ''
+          }`}
+        >
+          <div>
+            <p className="section-label">Portfolio</p>
+            <h2 className="section-title">Selected work</h2>
+            <p className="section-desc">
+              Real products for associations, commerce, events, and on-chain
+              experiments — designed to ship and scale.
+            </p>
+          </div>
+          <p className="text-sm text-ink-faint font-mono shrink-0 md:pb-1">
+            {projects.length} projects
           </p>
         </div>
 
-        {/* Projects Grid */}
-        <div ref={gridRef} className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 fade-up delay-150 ${gridVisible ? 'visible' : ''}`}>
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className='group relative bg-white border border-black/10 rounded-xl overflow-hidden hover:border-black transition-all duration-300 hover:shadow-xl'
-            >
-              {/* Image Container */}
-              <div className='relative h-48 overflow-hidden bg-gray-100'>
-                <img
-                  src={project.live && project.live !== '#' ? `https://api.microlink.io/?url=${encodeURIComponent(project.live)}&screenshot=true&meta=false&embed=screenshot.url&prerender=true&waitFor=5000` : project.image}
-                  alt={project.title}
-                  className='w-full h-full object-cover group-hover:scale-110 transition-transform duration-300'
-                  loading='lazy'
-                />
-              </div>
-
-              {/* Content */}
-              <div className='p-6 space-y-4'>
-                <h3 className='text-xl font-bold text-black group-hover:text-cyan-600 transition-colors'>
-                  {project.title}
-                </h3>
-                <p className='text-gray-600 text-sm line-clamp-2'>
-                  {project.description}
-                </p>
-
-                {/* Tags */}
-                <div className='flex flex-wrap gap-2'>
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className='text-xs bg-cyan-500/10 text-cyan-700 px-3 py-1 rounded-full border border-cyan-500/20'
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Links */}
-                <div className='flex gap-3 pt-4 border-t border-black/10'>
-                  <a
-                    href={project.github}
-                    className='flex-1 flex items-center justify-center gap-2 bg-black/5 hover:bg-black/10 text-gray-700 hover:text-black px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium'
-                  >
-                    <Github className='w-4 h-4' />
-                    Code
-                  </a>
-                  <a
-                    href={project.live}
-                    className='flex-1 flex items-center justify-center gap-2 border border-gray-300 text-black px-4 py-2 rounded-lg hover:bg-black hover:text-white transition-all duration-300 text-sm font-medium'
-                  >
-                    <ExternalLink className='w-4 h-4' />
-                    Live
-                  </a>
-                </div>
-              </div>
-            </div>
+        {/* Featured */}
+        <div
+          ref={featRef}
+          className={`grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 mb-6 reveal ${
+            featVisible ? 'visible' : ''
+          }`}
+        >
+          {featured.map((project, i) => (
+            <FeaturedCard key={project.id} project={project} index={i} />
           ))}
+        </div>
+
+        {/* More work */}
+        <div
+          ref={moreRef}
+          className={`reveal reveal-delay-1 ${moreVisible ? 'visible' : ''}`}
+        >
+          <h3 className="text-sm font-medium text-ink-faint uppercase tracking-wider mb-5 mt-10">
+            More projects
+          </h3>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {visibleRest.map((project) => (
+              <CompactCard key={project.id} project={project} />
+            ))}
+          </div>
+
+          {rest.length > 4 && (
+            <div className="mt-8 text-center">
+              <button
+                type="button"
+                onClick={() => setShowAll((v) => !v)}
+                className="btn-secondary"
+              >
+                {showAll ? 'Show less' : `View all ${rest.length} projects`}
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </section>

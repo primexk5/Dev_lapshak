@@ -1,180 +1,106 @@
 import React from 'react'
-import { Code2, Zap, Shield, Gauge } from 'lucide-react'
 import { useInView } from '../hooks/useInView'
+import { Hexagon } from 'lucide-react'
 import {
   SiJavascript,
+  SiTypescript,
   SiReact,
   SiNextdotjs,
   SiNodedotjs,
+  SiExpress,
   SiPostgresql,
   SiDocker,
   SiGithub,
   SiTailwindcss,
-  SiExpress
+  SiSolidity,
+  SiRust,
 } from 'react-icons/si'
 
-const Skills = () => {
-  const [skillsHeadRef, skillsHeadVisible] = useInView()
-  const [skillsGridRef, skillsGridVisible] = useInView()
-  const [servicesHeadRef, servicesHeadVisible] = useInView()
-  const [servicesGridRef, servicesGridVisible] = useInView()
-  const skillCategories = [
-    {
-      title: 'Frontend',
-      icon: <Code2 className='w-6 h-6' />,
-      skills: [
-        { name: 'React', icon: SiReact },
-        { name: 'Next.js', icon: SiNextdotjs },
-        { name: 'Tailwind CSS', icon: SiTailwindcss },
-        { name: 'JavaScript', icon: SiJavascript }
-      ]
-    },
-    {
-      title: 'Backend',
-      icon: <Shield className='w-6 h-6' />,
-      skills: [
-        { name: 'Node.js', icon: SiNodedotjs },
-        { name: 'Express', icon: SiExpress },
-        { name: 'PostgreSQL', icon: SiPostgresql },
-        { name: 'RESTful APIs', icon: null }
-      ]
-    },
-    {
-      title: 'DevOps',
-      icon: <Gauge className='w-6 h-6' />,
-      skills: [
-        { name: 'Docker', icon: SiDocker },
-        { name: 'CI/CD', icon: null },
-        { name: 'GitHub', icon: SiGithub }
-      ]
-    },
-    {
-      title: 'Specializations',
-      icon: <Zap className='w-6 h-6' />,
-      skills: [
-        { name: 'Full Stack', icon: null },
-        { name: 'Database Design', icon: null },
-        { name: 'Performance Optimization', icon: null }
-      ]
-    }
-  ]
+const tech = [
+  { name: 'JavaScript', icon: SiJavascript },
+  { name: 'TypeScript', icon: SiTypescript },
+  { name: 'React', icon: SiReact },
+  { name: 'React Native', icon: SiReact },
+  { name: 'Next.js', icon: SiNextdotjs },
+  { name: 'Node.js', icon: SiNodedotjs },
+  { name: 'Express', icon: SiExpress },
+  { name: 'PostgreSQL', icon: SiPostgresql },
+  { name: 'Solidity', icon: SiSolidity },
+  { name: 'Rust', icon: SiRust },
+  { name: 'Cairo', icon: Hexagon },
+  { name: 'Docker', icon: SiDocker },
+  { name: 'Tailwind', icon: SiTailwindcss },
+  { name: 'GitHub', icon: SiGithub },
+]
 
-  const services = [
-    {
-      title: 'Web Development',
-      description: 'Building responsive, modern websites with React and Next.js'
-    },
-    {
-       title: 'Mobile Development',
-       description: 'Cross-platform mobile app development with React Native'
-    },
-    {
-      title: 'Full Stack Development',
-      description: 'End-to-end application development with Node.js and PostgreSQL'
-    },
-    {
-      title: 'API Development',
-      description: 'RESTful and scalable API design with Express and Node.js'
-    },
-    {
-      title: 'Database Design',
-      description: 'Efficient database architecture and optimization'
-    },
-    {
-      title: 'DevOps ',
-      description: 'Docker containerization '
-    },
-    {
-      title: 'Performance Optimization',
-      description: 'Code optimization and application performance tuning'
-    }
-  ]
+const pillars = [
+  {
+    title: 'Frontend craft',
+    body: 'Interfaces that feel fast and clear — component systems, accessibility, and responsive layout as defaults.',
+  },
+  {
+    title: 'Backend systems',
+    body: 'APIs, auth, and data models that stay maintainable. Node, Express, and PostgreSQL in production.',
+  },
+  {
+    title: 'Ship & operate',
+    body: 'Docker, simple CI, and deploys that don\'t break on Friday. I optimize for reliability over novelty.',
+  },
+  {
+    title: 'Web3 & Mobile',
+    body: 'Smart contracts in Solidity and Cairo across Base and Starknet, plus Solana development and cross-platform mobile apps.',
+  },
+]
+
+const Skills = () => {
+  const [headRef, headVisible] = useInView()
+  const [bodyRef, bodyVisible] = useInView()
 
   return (
-    <section id='skills' className='py-20 bg-white'>
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-        {/* Skills Section */}
-        <div className='mb-20'>
-          <div ref={skillsHeadRef} className={`text-center mb-16 fade-up ${skillsHeadVisible ? 'visible' : ''}`}>
-            <h2 className='text-3xl md:text-3xl font-bold mb-4'>
-              <span className='text-black'>
-                Skills & Expertise
-              </span>
-            </h2>
-            <p className='text-gray-600 text-lg max-w-2xl mx-auto'>
-              Proficient in modern web technologies and best practices
-            </p>
-          </div>
-
-          {/* Skills Grid */}
-          <div ref={skillsGridRef} className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 fade-up delay-150 ${skillsGridVisible ? 'visible' : ''}`}>
-            {skillCategories.map((category, index) => (
-              <div
-                key={index}
-                className='bg-white border border-black/10 rounded-xl p-6 hover:border-black hover:shadow-xl transition-all duration-300 group'
-              >
-                <div className='flex items-center gap-3 mb-6'>
-                  <div className='p-3 bg-cyan-500/10 rounded-lg text-cyan-600 group-hover:scale-110 transition-transform'>
-                    {category.icon}
-                  </div>
-                  <h3 className='text-lg font-bold text-black'>{category.title}</h3>
-                </div>
-
-                <div className='space-y-3'>
-                  {category.skills.map((skill, idx) => {
-                    const IconComponent = skill.icon
-                    return (
-                      <div key={idx} className='flex items-center gap-3 group/skill'>
-                        {IconComponent ? (
-                          <IconComponent className='w-5 h-5 text-gray-600' />
-                        ) : (
-                          <div className='w-5 h-5 rounded bg-black/10' />
-                        )}
-                        <span className='text-sm text-gray-600 group-hover/skill:text-cyan-600 transition-colors'>
-                          {skill.name}
-                        </span>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
+    <section id="skills" className="section bg-surface border-y border-line">
+      <div className="container-page">
+        <div
+          ref={headRef}
+          className={`mb-14 md:mb-16 reveal ${headVisible ? 'visible' : ''}`}
+        >
+          <p className="section-label">Capabilities</p>
+          <h2 className="section-title">How I build</h2>
+          <p className="section-desc">
+            A practical stack and a bias toward shipping products people actually use.
+          </p>
         </div>
 
-        {/* Services Section */}
-        <div>
-          <div ref={servicesHeadRef} className={`text-center mb-16 fade-up ${servicesHeadVisible ? 'visible' : ''}`}>
-            <h2 className='text-3xl md:text-3xl font-bold mb-4'>
-              <span className='text-black'>
-                Services
-              </span>
-            </h2>
-            <p className='text-gray-600 text-lg max-w-2xl mx-auto'>
-              What I can do for your project
-            </p>
+        <div
+          ref={bodyRef}
+          className={`reveal reveal-delay-1 ${bodyVisible ? 'visible' : ''}`}
+        >
+          {/* Tech marquee-style grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-7 gap-3 mb-16">
+            {tech.map((item) => {
+              const Icon = item.icon
+              return (
+                <div
+                  key={item.name}
+                  className="flex items-center gap-3 rounded-xl border border-line bg-canvas/60 px-4 py-3.5 hover:border-accent/30 hover:bg-accent-soft/40 transition-colors duration-300"
+                >
+                  <Icon className="w-5 h-5 text-ink-soft shrink-0" aria-hidden />
+                  <span className="text-sm font-medium text-ink-soft truncate">
+                    {item.name}
+                  </span>
+                </div>
+              )
+            })}
           </div>
 
-          {/* Services Grid */}
-          <div ref={servicesGridRef} className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 fade-up delay-150 ${servicesGridVisible ? 'visible' : ''}`}>
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className='bg-white border border-black/10 rounded-xl p-6 hover:border-black hover:shadow-xl transition-all duration-300 group'
-              >
-                <div className='flex items-start gap-4'>
-                  <div className='p-3 bg-cyan-500/10 rounded-lg text-cyan-600 mt-1'>
-                    <Code2 className='w-5 h-5' />
-                  </div>
-                  <div>
-                    <h3 className='text-lg font-bold text-black mb-2 group-hover:text-cyan-600 transition-colors'>
-                      {service.title}
-                    </h3>
-                    <p className='text-gray-600 text-sm'>
-                      {service.description}
-                    </p>
-                  </div>
-                </div>
+          {/* Pillars */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {pillars.map((p, i) => (
+              <div key={p.title} className="relative pl-5 border-l-2 border-line hover:border-accent transition-colors duration-300">
+                <span className="absolute -left-[9px] top-0 flex h-4 w-4 items-center justify-center rounded-full bg-canvas border border-line text-[10px] font-mono text-ink-faint">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <h3 className="font-serif text-xl text-ink mb-2.5">{p.title}</h3>
+                <p className="text-sm text-ink-muted leading-relaxed">{p.body}</p>
               </div>
             ))}
           </div>

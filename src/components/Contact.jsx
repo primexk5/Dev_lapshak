@@ -1,7 +1,28 @@
 import React, { useState, useRef } from 'react'
-import { Mail, Phone, MapPin, Send, Check } from 'lucide-react'
+import { ArrowUpRight, Check, Loader2, Mail, MapPin, Phone } from 'lucide-react'
 import emailjs from '@emailjs/browser'
 import { useInView } from '../hooks/useInView'
+
+const contactItems = [
+  {
+    icon: Mail,
+    label: 'Email',
+    value: 'lapshakbarnabas4@gmail.com',
+    href: 'mailto:lapshakbarnabas4@gmail.com',
+  },
+  {
+    icon: Phone,
+    label: 'Phone',
+    value: '+234 816 855 0514',
+    href: 'tel:+2348168550514',
+  },
+  {
+    icon: MapPin,
+    label: 'Based in',
+    value: 'Jos, Plateau, Nigeria',
+    href: 'https://maps.app.goo.gl/gR2Ya2T8Y8etUhVL8?g_st=ac',
+  },
+]
 
 const Contact = () => {
   const form = useRef()
@@ -9,192 +30,216 @@ const Contact = () => {
     from_name: '',
     user_email: '',
     subject: '',
-    message: ''
+    message: '',
   })
-
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState('')
+  const [ref, visible] = useInView()
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
+    setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
     setIsSubmitting(true)
-    console.log('Sending email...')
+    setError('')
 
-    // Replace these with your actual EmailJS service ID, template ID, and public key
-    emailjs.sendForm('service_6ko5cur', 'template_wsm75xe', form.current, 'BEBVpFZr0aIUCAska')
-      .then(
-        () => {
-          setSubmitted(true)
-          setFormData({ from_name: '', user_email: '', subject: '', message: '' })
-          setTimeout(() => {
-            setSubmitted(false)
-          }, 3000)
-        },
-        (error) => {
-          console.error('FAILED...', error)
-          alert('Failed to send message. Please check the console for details.')
-        }
+    emailjs
+      .sendForm(
+        'service_6ko5cur',
+        'template_wsm75xe',
+        form.current,
+        'BEBVpFZr0aIUCAska'
       )
-      .finally(() => {
-        setIsSubmitting(false)
+      .then(() => {
+        setSubmitted(true)
+        setFormData({
+          from_name: '',
+          user_email: '',
+          subject: '',
+          message: '',
+        })
+        setTimeout(() => setSubmitted(false), 4000)
       })
+      .catch(() => {
+        setError('Could not send. Email me directly and I will reply soon.')
+      })
+      .finally(() => setIsSubmitting(false))
   }
 
-  const [headingRef, headingVisible] = useInView()
-  const [contentRef, contentVisible] = useInView()
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: 'Email',
-      value: 'lapshakbarnabas4@gmail.com',
-      href: 'mailto:lapshakbarnabas4@gmail.com'
-    },
-    {
-      icon: Phone,
-      label: 'Phone',
-      value: '+234 8168550514',
-      href: 'tel:+234 8168550514'
-    },
-    {
-      icon: MapPin,
-      label: 'Location',
-      value: 'Jos Plateau, Nigeria',
-      href: 'https://maps.app.goo.gl/gR2Ya2T8Y8etUhVL8?g_st=ac'
-    }
-  ]
-
   return (
-    <section id='contact' className='py-20 bg-black'>
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-        {/* Section Header */}
-        <div ref={headingRef} className={`text-center mb-16 fade-up ${headingVisible ? 'visible' : ''}`}>
-            <h2 className='text-3xl md:text-3xl text-white font-bold mb-4'>
-            Get In
-            <span className='ml-2 text-white'>
-              Touch
-            </span>
-          </h2>
-          <p className='text-gray-400 text-lg max-w-2xl mx-auto'>
-            Have a project in mind? Let's collaborate and bring your ideas to life
-          </p>
-        </div>
+    <section id="contact" className="relative section bg-night text-surface">
+      <div className="container-page relative z-10">
+        <div
+          ref={ref}
+          className={`grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 reveal ${
+            visible ? 'visible' : ''
+          }`}
+        >
+          <div className="lg:col-span-5 space-y-10">
+            <div>
+              <p className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-accent mb-5">
+                <span className="w-6 h-px bg-accent" />
+                Contact
+              </p>
+              <h2 className="font-serif text-display text-surface">
+                Let&apos;s build
+                <span className="italic text-night-muted"> something solid.</span>
+              </h2>
+              <p className="mt-4 text-night-muted text-base md:text-lg leading-relaxed max-w-md">
+                Hiring, freelance, or a product idea you want to ship — send a
+                note. I typically respond within one to two days.
+              </p>
+            </div>
 
-        <div ref={contentRef} className={`grid grid-cols-1 lg:grid-cols-3 gap-8 fade-up delay-150 ${contentVisible ? 'visible' : ''}`}>
-          {/* Contact Info */}
-          <div className='space-y-6'>
-            {contactInfo.map((info, index) => {
-              const Icon = info.icon
-              return (
-                <a
-                  key={index}
-                  href={info.href}
-                  className='flex gap-4 p-6 bg-white/5 border border-white/10 rounded-xl hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 group'
-                >
-                  <div className='flex-shrink-0'>
-                    <div className='p-3 bg-cyan-500/20 rounded-lg text-cyan-400 group-hover:scale-110 transition-transform'>
-                      <Icon className='w-6 h-6' />
-                    </div>
-                  </div>
-                  <div>
-                    <p className='text-sm text-gray-500 font-medium'>{info.label}</p>
-                    <p className='text-white font-semibold mt-1 group-hover:text-cyan-400 transition-colors'>
-                      {info.value}
-                    </p>
-                  </div>
-                </a>
-              )
-            })}
-
+            <ul className="space-y-5">
+              {contactItems.map((item) => {
+                const Icon = item.icon
+                return (
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      target={item.href.startsWith('http') ? '_blank' : undefined}
+                      rel={
+                        item.href.startsWith('http')
+                          ? 'noopener noreferrer'
+                          : undefined
+                      }
+                      className="group flex items-start gap-4"
+                    >
+                      <span className="mt-0.5 flex h-10 w-10 items-center justify-center rounded-full border border-night-line bg-night-soft text-accent group-hover:border-accent/40 transition-colors">
+                        <Icon className="w-4 h-4" />
+                      </span>
+                      <span>
+                        <span className="block text-[11px] font-mono uppercase tracking-wider text-night-muted mb-0.5">
+                          {item.label}
+                        </span>
+                        <span className="inline-flex items-center gap-1 text-sm text-surface group-hover:text-accent transition-colors">
+                          {item.value}
+                          {item.href.startsWith('http') && (
+                            <ArrowUpRight className="w-3.5 h-3.5 opacity-50" />
+                          )}
+                        </span>
+                      </span>
+                    </a>
+                  </li>
+                )
+              })}
+            </ul>
           </div>
 
-          {/* Contact Form */}
-          <div className='lg:col-span-2'>
-            <form ref={form} onSubmit={handleSubmit} className='space-y-6 bg-white/5 border border-white/10 rounded-xl p-8 hover:border-cyan-500/30 transition-all duration-300'>
-              {/* Name Input */}
-              <div>
-                <label className='block text-white font-semibold mb-2'>Your Name</label>
-                <input
-                  type='text'
-                  name='from_name'
-                  value={formData.from_name}
-                  onChange={handleChange}
-                  required
-                  placeholder='John Doe'
-                  className='w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 focus:bg-white/10 transition-all duration-300'
-                />
+          <div className="lg:col-span-7">
+            <form
+              ref={form}
+              onSubmit={handleSubmit}
+              className="rounded-2xl border border-night-line bg-night-card/80 backdrop-blur-sm p-6 sm:p-8 space-y-5 shadow-lift"
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label htmlFor="from_name" className="block text-xs font-medium text-night-muted mb-2">
+                    Name
+                  </label>
+                  <input
+                    id="from_name"
+                    type="text"
+                    name="from_name"
+                    value={formData.from_name}
+                    onChange={handleChange}
+                    required
+                    placeholder="Your name"
+                    className="input-field"
+                    autoComplete="name"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="user_email" className="block text-xs font-medium text-night-muted mb-2">
+                    Email
+                  </label>
+                  <input
+                    id="user_email"
+                    type="email"
+                    name="user_email"
+                    value={formData.user_email}
+                    onChange={handleChange}
+                    required
+                    placeholder="you@company.com"
+                    className="input-field"
+                    autoComplete="email"
+                  />
+                </div>
               </div>
 
-              {/* Email Input */}
               <div>
-                <label className='block text-white font-semibold mb-2'>Email Address</label>
+                <label htmlFor="subject" className="block text-xs font-medium text-night-muted mb-2">
+                  Subject
+                </label>
                 <input
-                  type='email'
-                  name='user_email'
-                  value={formData.user_email}
-                  onChange={handleChange}
-                  required
-                  placeholder='john@example.com'
-                  className='w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 focus:bg-white/10 transition-all duration-300'
-                />
-              </div>
-
-              {/* Subject Input */}
-              <div>
-                <label className='block text-white font-semibold mb-2'>Subject</label>
-                <input
-                  type='text'
-                  name='subject'
+                  id="subject"
+                  type="text"
+                  name="subject"
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  placeholder='Project Inquiry'
-                  className='w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 focus:bg-white/10 transition-all duration-300'
+                  placeholder="Role, project, or intro"
+                  className="input-field"
                 />
               </div>
 
-              {/* Message Input */}
               <div>
-                <label className='block text-white font-semibold mb-2'>Message</label>
+                <label htmlFor="message" className="block text-xs font-medium text-night-muted mb-2">
+                  Message
+                </label>
                 <textarea
-                  name='message'
+                  id="message"
+                  name="message"
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows='5'
-                  placeholder='Tell me about your project...'
-                  className='w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 focus:bg-white/10 transition-all duration-300 resize-none'
-                ></textarea>
+                  rows={5}
+                  placeholder="A few lines about the opportunity or project…"
+                  className="input-field resize-y min-h-[130px]"
+                />
               </div>
 
-              {/* Submit Button */}
-              <button
-                type='submit'
-                disabled={isSubmitting}
-                className='w-full bg-cyan-500 text-black font-bold py-3 rounded-lg hover:shadow-2xl hover:shadow-cyan-400/50 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed'
-              >
-                {submitted ? (
-                  <>
-                    <Check className='w-5 h-5 group-hover:scale-110 transition-transform' />
-                    <span>Message Sent!</span>
-                  </>
-                ) : isSubmitting ? (
-                  <span>Sending...</span>
-                ) : (
-                  <>
-                    <Send className='w-5 h-5 group-hover:translate-x-1 transition-transform' />
-                    <span>Send Message</span>
-                  </>
-                )}
-              </button>
+              {error && (
+                <p className="text-sm text-red-400" role="alert">
+                  {error}
+                </p>
+              )}
+
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-1">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="btn-accent min-w-[160px]"
+                >
+                  {submitted ? (
+                    <>
+                      <Check className="w-4 h-4" />
+                      Message sent
+                    </>
+                  ) : isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Sending…
+                    </>
+                  ) : (
+                    'Send message'
+                  )}
+                </button>
+                <p className="text-xs text-night-muted">
+                  Prefer email?{' '}
+                  <a
+                    href="mailto:lapshakbarnabas4@gmail.com"
+                    className="text-surface underline underline-offset-2 hover:text-accent transition-colors"
+                  >
+                    Write directly
+                  </a>
+                </p>
+              </div>
             </form>
           </div>
         </div>
