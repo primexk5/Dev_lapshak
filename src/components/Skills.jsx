@@ -14,6 +14,7 @@ import {
   SiTailwindcss,
   SiSolidity,
   SiRust,
+  SiSolana,
 } from 'react-icons/si'
 
 const tech = [
@@ -27,6 +28,7 @@ const tech = [
   { name: 'PostgreSQL', icon: SiPostgresql },
   { name: 'Solidity', icon: SiSolidity },
   { name: 'Rust', icon: SiRust },
+  { name: 'Solana', icon: SiSolana },
   { name: 'Cairo', icon: Hexagon },
   { name: 'Docker', icon: SiDocker },
   { name: 'Tailwind', icon: SiTailwindcss },

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barnabas Lapshak — Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset & Page Setup */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    @page {
+      size: A4;
+      margin: 12mm 15mm 12mm 15mm;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 10.5px;
+      line-height: 1.45;
+      color: #2d3748;
+      background-color: #ffffff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: #1a202c;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Layout Utilities */
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Header styling */
+    .header {
+      margin-bottom: 12px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 10px;
+    }
+
+    .name {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a202c;
+      line-height: 1.1;
+      margin-bottom: 2px;
+    }
+
+    .title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #4a5568;
+      margin-bottom: 6px;
+    }
+
+    .contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 9px;
+      color: #718096;
+    }
+
+    .contacts a, .contacts span {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .contacts .separator {
+      color: #cbd5e0;
+    }
+
+    /* Section styling */
+    .section {
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #1a202c;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 3px;
+      margin-bottom: 6px;
+    }
+
+    /* Summary styling */
+    .summary-text {
+      font-size: 10.5px;
+      color: #4a5568;
+      line-height: 1.5;
+    }
+
+    /* Experience & Projects lists */
+    .item {
+      margin-bottom: 8px;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    .item-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #2d3748;
+    }
+
+    .item-title span.role {
+      font-weight: 400;
+      color: #4a5568;
+    }
+
+    .item-meta {
+      font-size: 9.5px;
+      color: #718096;
+      font-style: italic;
+    }
+
+    .bullets {
+      margin-left: 12px;
+      margin-top: 3px;
+    }
+
+    .bullets li {
+      margin-bottom: 2.5px;
+      font-size: 10px;
+      color: #4a5568;
+      line-height: 1.4;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .skills-category {
+      background-color: #f7fafc;
+      border: 1px solid #edf2f7;
+      border-radius: 4px;
+      padding: 6px 8px;
+    }
+
+    .category-title {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #718096;
+      margin-bottom: 3px;
+      letter-spacing: 0.05em;
+    }
+
+    .category-list {
+      font-size: 9.5px;
+      color: #2d3748;
+      line-height: 1.35;
+    }
+
+    /* Print adjustments to ensure absolute single page constraint */
+    @media print {
+      body {
+        background-color: transparent;
+      }
+      .item {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- HEADER -->
+    <header class="header">
+      <h1 class="name">Barnabas Lapshak</h1>
+      <div class="title">Full-Stack & Blockchain Developer</div>
+      <div class="contacts">
+        <a href="mailto:lapshakbarnabas4@gmail.com">lapshakbarnabas4@gmail.com</a>
+        <span class="separator">|</span>
+        <a href="tel:+2348168550514">+234 816 855 0514</a>
+        <span class="separator">|</span>
+        <span>Jos, Nigeria (Remote / Hybrid)</span>
+        <span class="separator">|</span>
+        <a href="https://github.com/primexk5" target="_blank">github.com/primexk5</a>
+        <span class="separator">|</span>
+        <a href="https://linkedin.com/in/barnabas-lapshak-1866673a5" target="_blank">linkedin.com/in/barnabas-lapshak-1866673a5</a>
+      </div>
+    </header>
+
+    <!-- SUMMARY -->
+    <section class="section">
+      <h2 class="section-title">Professional Summary</h2>
+      <p class="summary-text">
+        Detail-oriented Full-Stack and Blockchain Developer with 3+ years of experience engineering secure, scalable web/mobile applications and smart contracts. Expertise spanning modern frontend architectures (React, Next.js), robust backend platforms (Node.js, PostgreSQL), and decentralised protocols (Solidity, Solana, Cairo). Demonstrated history of designing and shipping high-impact products for government agencies, businesses, and Web3 ecosystems.
+      </p>
+    </section>
+
+    <!-- TECHNICAL SKILLS -->
+    <section class="section">
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skills-category">
+          <div class="category-title">Languages</div>
+          <div class="category-list">JavaScript (ES6+), TypeScript, Solidity, Cairo, Rust, SQL</div>
+        </div>
+        <div class="skills-category">
+          <div class="category-title">Frontend & Mobile</div>
+          <div class="category-list">React, Next.js, React Native, Tailwind CSS, HTML5/CSS3, Shadcn/ui</div>
+        </div>
+        <div class="skills-category">
+          <div class="category-title">Backend & Database</div>
+          <div class="category-list">Node.js, Express, PostgreSQL, RESTful APIs, DB Schema Design</div>
+        </div>
+        <div class="skills-category">
+          <div class="category-title">Tools & DevOps</div>
+          <div class="category-list">Git/GitHub, Docker, Anchor (Solana), NPM/Yarn, Linux, Vercel, Agile</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK EXPERIENCE -->
+    <section class="section">
+      <h2 class="section-title">Work Experience</h2>
+      
+      <div class="item">
+        <div class="item-header">
+          <div class="item-title">Freelance Full-Stack & Web3 Developer <span class="role">| Self-Employed</span></div>
+          <div class="item-meta">Jan 2023 – Present</div>
+        </div>
+        <ul class="bullets">
+          <li><strong>Disaster Response Portal (Benue SEMA):</strong> Engineered the official disaster management platform using React, Tailwind CSS, and Node.js. Developed critical reporting features that streamline incident notifications and map resources.</li>
+          <li><strong>Relief Distribution Ledger (Benue SEMA Chain):</strong> Designed and deployed Solidity smart contracts on EVM-compatible networks to audit relief funds, ensuring complete transaction transparency and public trust.</li>
+          <li><strong>Fintech Commission Engine (Hybrid Agent):</strong> Built a responsive, secure Next.js web application facilitating local and international commission settlements for property and vehicle transactions, shortening client payout cycles.</li>
+          <li><strong>E-Commerce storefront (Elysian Beddings):</strong> Implemented a high-performance storefront with customized inventory management and clean shopping workflows, improving digital conversion rates.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div class="item-title">Full-Stack Engineer <span class="role">| Blockfuse Labs</span></div>
+          <div class="item-meta">Jan 2024 – Dec 2025</div>
+        </div>
+        <ul class="bullets">
+          <li><strong>Web3 DApps & Smart Contracts:</strong> Developed and integrated decentralized applications, writing secure Solidity smart contracts, building Solana programs in Rust with Anchor, and utilizing Cairo on Starknet.</li>
+          <li><strong>Frontend System Design:</strong> Engineered responsive interfaces using React, Next.js, and Tailwind CSS, standardizing reusable component systems and ensuring pixel-perfect UI rendering.</li>
+          <li><strong>API & Database Management:</strong> Built and maintained backend services using Node.js and Express.js, designing PostgreSQL database schemas and setting up secure authentication layers.</li>
+          <li><strong>Containerization & CI/CD:</strong> Packaged services into Docker containers, streamlined local environment setups, and deployed applications to cloud hosting environments with automated pipelines.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section">
+      <h2 class="section-title">Selected Projects</h2>
+      
+      <div class="item">
+        <div class="item-header">
+          <div class="item-title">Seven Hills Apartment <span class="role">— Booking & Listing Platform</span></div>
+          <div class="item-meta">React, Tailwind CSS, Next.js</div>
+        </div>
+        <ul class="bullets">
+          <li>Developed a responsive property listing and room booking platform with dynamic showcases, real-time availability filters, and automated reservation workflows.</li>
+          <li>Optimized image loading and asset delivery, enhancing page speeds and mobile performance for property search.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div class="item-title">Benue Blockchain Fest <span class="role">— Conference Portal</span></div>
+          <div class="item-meta">React, Tailwind CSS, Web3</div>
+        </div>
+        <ul class="bullets">
+          <li>Designed and launched the primary landing page and registration platform for a regional blockchain conference.</li>
+          <li>Optimized SEO and page speed index scores, ensuring search engine rankings and zero-downtime during peak ticket registration.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="section">
+      <h2 class="section-title">Education & Training</h2>
+      <div class="item">
+        <div class="item-header">
+          <div class="item-title">Full-Stack & Blockchain Development Program <span class="role">| Blockfuse Labs</span></div>
+          <div class="item-meta">Nigeria | 2025</div>
+        </div>
+        <ul class="bullets">
+          <li>Completed intensive, hands-on training focusing on advanced frontend systems, backend engineering, and Web3 development including Solidity smart contracts and decentralised applications.</li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

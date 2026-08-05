@@ -18,9 +18,18 @@ const Hero = () => {
       >
         {/* Main Statement Box - Spans 3 cols */}
         <div className="md:col-span-3 md:row-span-2 border border-line bg-surface p-8 md:p-12 flex flex-col justify-between transition-colors hover:border-line-strong group">
-          <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-ink-faint mb-12 block">
-            01 / Vision
-          </span>
+          <div className="flex items-center justify-between gap-4 mb-12">
+            <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-ink-faint block">
+              01 / Vision
+            </span>
+            <a
+              href="/Barnabas_Resume.pdf"
+              download="Barnabas_Resume.pdf"
+              className="inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-[0.2em] text-accent hover:text-accent/80 transition-colors duration-300"
+            >
+              Resume (PDF) →
+            </a>
+          </div>
           <h1
             className={`mt-10 font-serif text-[3rem] md:text-6xl lg:text-[4.5rem] text-ink leading-[1.05] tracking-tight reveal reveal-delay-1 ${visible ? 'visible' : ''}`}
           >

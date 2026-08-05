@@ -15,6 +15,7 @@ const navLinks = [
   { name: 'Work', href: '#projects' },
   { name: 'Skills', href: '#skills' },
   { name: 'About', href: '#about' },
+  { name: 'Resume', href: '/Barnabas_Resume.pdf', external: true },
   { name: 'Contact', href: '#contact' },
 ]
 
@@ -43,6 +44,8 @@ const Footer = () => {
                   <li key={link.name}>
                     <a
                       href={link.href}
+                      target={link.external ? '_blank' : undefined}
+                      rel={link.external ? 'noopener noreferrer' : undefined}
                       className="text-sm text-ink-muted hover:text-accent transition-colors"
                     >
                       {link.name}

@@ -5,6 +5,7 @@ const navLinks = [
   { name: 'Work', href: '#projects' },
   { name: 'Skills', href: '#skills' },
   { name: 'About', href: '#about' },
+  { name: 'Resume', href: '/Barnabas_Resume.pdf', external: true },
   { name: 'Contact', href: '#contact' },
 ]
 
@@ -46,6 +47,8 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
+                target={link.external ? '_blank' : undefined}
+                rel={link.external ? 'noopener noreferrer' : undefined}
                 className="px-3.5 py-2 text-[13px] font-medium text-ink-muted hover:text-ink transition-colors"
               >
                 {link.name}
@@ -99,6 +102,8 @@ const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
+                target={link.external ? '_blank' : undefined}
+                rel={link.external ? 'noopener noreferrer' : undefined}
                 className="font-serif text-3xl sm:text-4xl text-ink py-4 border-b border-line"
                 style={{
                   transitionDelay: isOpen ? `${i * 45}ms` : '0ms',

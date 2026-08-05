@@ -3,7 +3,7 @@ import { useInView } from '../hooks/useInView'
 
 const stats = [
   { value: '20+', label: 'Projects shipped' },
-  { value: '3+', label: 'Years building' },
+  { value: '3+', label: 'Years of experience' },
   { value: 'Full stack', label: '& Blockchain delivery' },
 ]
 
@@ -69,6 +69,13 @@ const About = () => {
             <div className="pt-4 flex flex-wrap gap-3">
               <a href="#contact" className="btn-primary">
                 Let&apos;s work together
+              </a>
+              <a
+                href="/Barnabas_Resume.pdf"
+                download="Barnabas_Resume.pdf"
+                className="btn-secondary"
+              >
+                Download Resume
               </a>
               <a
                 href="https://www.linkedin.com/in/barnabas-lapshak-1866673a5"
