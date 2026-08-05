@@ -27,13 +27,13 @@ const Navbar = () => {
     <header
       className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 ${
         isOpen
-          ? 'bg-canvas'
+          ? 'bg-canvas border-b border-line'
           : scrolled
           ? 'bg-canvas/90 backdrop-blur-xl border-b border-line/80 shadow-soft'
           : 'bg-transparent border-b border-transparent'
       }`}
     >
-      <div className="container-page relative z-50">
+      <div className="container-page relative z-[60]">
         <div className="flex items-center justify-between h-[4.25rem]">
           <a href="#home" className="flex items-center gap-3 group relative z-50">
             <span className="text-2xl font-serif tracking-tight text-ink">
@@ -70,25 +70,34 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile full-screen menu */}
+      {/* Backdrop */}
+      <div 
+        className={`md:hidden fixed inset-0 z-40 bg-ink/10 backdrop-blur-sm transition-all duration-300 ${
+          isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
+        }`}
+        onClick={() => setIsOpen(false)}
+        aria-hidden="true"
+      />
+
+      {/* Side drawer */}
       <div
-        className={`md:hidden fixed inset-0 top-0 z-40 bg-canvas transition-all duration-500 ease-out ${
-          isOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-8 invisible pointer-events-none'
+        className={`md:hidden fixed top-0 right-0 h-[100svh] w-[85vw] max-w-sm z-50 bg-canvas border-l border-line shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="container-page pt-28 pb-10 flex flex-col h-full">
+        <div className="pt-24 pb-10 px-6 sm:px-8 flex flex-col h-full overflow-y-auto">
           <nav className="flex flex-col gap-1" aria-label="Mobile">
             {navLinks.map((link, i) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="font-serif text-4xl text-ink py-3 border-b border-line"
+                className="font-serif text-3xl sm:text-4xl text-ink py-4 border-b border-line"
                 style={{
-                  transitionDelay: isOpen ? `${i * 40}ms` : '0ms',
+                  transitionDelay: isOpen ? `${i * 45}ms` : '0ms',
                   opacity: isOpen ? 1 : 0,
-                  transform: isOpen ? 'translateY(0)' : 'translateY(8px)',
-                  transition: 'opacity 0.35s ease, transform 0.35s ease',
+                  transform: isOpen ? 'translateX(0)' : 'translateX(16px)',
+                  transition: 'opacity 0.4s ease, transform 0.4s ease',
                 }}
               >
                 {link.name}
