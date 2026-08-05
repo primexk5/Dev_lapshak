@@ -75,7 +75,7 @@ const Hero = () => {
             04 / About
           </span>
           <p className="text-xl md:text-2xl text-ink-muted leading-relaxed font-medium">
-            I'm <span className="text-ink font-bold">Barnabas Lapshak</span>. I craft web apps, mobile apps, and smart contracts across Base, Solana, and Starknet. <br className="hidden md:block" />
+            I'm <span className="text-ink font-bold">Barnabas Lapshak</span>. I build web apps, mobile apps, and smart contracts across Base, Solana, and Starknet. <br className="hidden md:block" />
             <span className="text-ink-soft">Solidity, Cairo, React, and Node.js.</span>
           </p>
         </div>
