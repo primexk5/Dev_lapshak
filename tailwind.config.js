@@ -7,23 +7,23 @@ export default {
   theme: {
     extend: {
       colors: {
-        canvas: '#09090b', // zinc-950
-        surface: '#18181b', // zinc-900
+        canvas: '#F6F0E6',
+        surface: '#FAF7F2',
         ink: {
-          DEFAULT: '#fafafa', // zinc-50
-          soft: '#e4e4e7', // zinc-200
-          muted: '#a1a1aa', // zinc-400
-          faint: '#52525b', // zinc-600
+          DEFAULT: '#1c1917',
+          soft: '#44403c',
+          muted: '#57534e',
+          faint: '#a8a29e',
         },
         line: {
-          DEFAULT: '#27272a', // zinc-800
-          strong: '#3f3f46', // zinc-700
+          DEFAULT: '#e7e5e4',
+          strong: '#d6d3d1',
         },
         accent: {
-          DEFAULT: '#3b82f6', // blue-500
-          soft: '#172554', // blue-950
-          hover: '#2563eb', // blue-600
-          glow: 'rgba(59, 130, 246, 0.15)',
+          DEFAULT: '#236551',
+          soft: '#eef6f3',
+          hover: '#1b4f40',
+          glow: 'rgba(35, 101, 81, 0.15)',
         },
         night: {
           DEFAULT: '#09090b',

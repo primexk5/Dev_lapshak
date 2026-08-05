@@ -59,19 +59,21 @@ const Navbar = () => {
           <button
             type="button"
             onClick={() => setIsOpen((v) => !v)}
-            className="md:hidden relative z-50 p-2 -mr-2 text-ink"
+            className="md:hidden relative z-50 p-2 -mr-2 text-ink outline-none"
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isOpen}
           >
-            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            <div className={`transition-transform duration-300 ${isOpen ? 'rotate-90' : 'rotate-0'}`}>
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </div>
           </button>
         </div>
       </div>
 
       {/* Mobile full-screen menu */}
       <div
-        className={`md:hidden fixed inset-0 top-0 z-40 bg-canvas transition-all duration-300 ${
-          isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
+        className={`md:hidden fixed inset-0 top-0 z-40 bg-canvas transition-all duration-500 ease-out ${
+          isOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-8 invisible pointer-events-none'
         }`}
       >
         <div className="container-page pt-28 pb-10 flex flex-col h-full">

@@ -22,12 +22,12 @@ const Footer = () => {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="bg-night border-t border-night-line text-surface">
+    <footer className="bg-canvas border-t border-line text-ink">
       <div className="container-page py-14 md:py-16">
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 mb-12">
           <div className="max-w-sm">
-            <p className="font-serif text-2xl text-surface mb-3">Dev_lapshak</p>
-            <p className="text-sm text-night-muted leading-relaxed">
+            <p className="font-serif text-2xl text-ink mb-3">Dev_lapshak</p>
+            <p className="text-sm text-ink-muted leading-relaxed">
               Full stack & blockchain developer in Jos, Nigeria. Building refined web, mobile, and blockchain products
               for teams that care about craft.
             </p>
@@ -35,7 +35,7 @@ const Footer = () => {
 
           <div className="flex flex-wrap gap-x-14 gap-y-8">
             <div>
-              <p className="text-[11px] font-mono uppercase tracking-[0.16em] text-night-muted mb-4">
+              <p className="text-[11px] font-mono uppercase tracking-[0.16em] text-ink-muted mb-4">
                 Navigate
               </p>
               <ul className="space-y-2.5">
@@ -43,7 +43,7 @@ const Footer = () => {
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-sm text-surface/80 hover:text-accent transition-colors"
+                      className="text-sm text-ink-muted hover:text-accent transition-colors"
                     >
                       {link.name}
                     </a>
@@ -53,7 +53,7 @@ const Footer = () => {
             </div>
 
             <div>
-              <p className="text-[11px] font-mono uppercase tracking-[0.16em] text-night-muted mb-4">
+              <p className="text-[11px] font-mono uppercase tracking-[0.16em] text-ink-muted mb-4">
                 Social
               </p>
               <div className="flex gap-3">
@@ -66,7 +66,7 @@ const Footer = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={s.label}
-                      className="flex h-9 w-9 items-center justify-center rounded-full border border-night-line text-night-muted hover:text-surface hover:border-accent/50 hover:bg-night-soft transition-all"
+                      className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink-muted hover:text-ink hover:border-accent/50 hover:bg-surface transition-all"
                     >
                       <Icon className="w-4 h-4" />
                     </a>
@@ -77,13 +77,13 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-night-line flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <p className="text-xs text-night-muted">
+        <div className="pt-8 border-t border-line flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <p className="text-xs text-ink-muted">
             © {year} Barnabas Lapshak 
           </p>
           <a
             href="#home"
-            className="inline-flex items-center gap-1.5 text-xs text-night-muted hover:text-surface transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs text-ink-muted hover:text-ink transition-colors"
           >
             Back to top
             <ArrowUp className="w-3.5 h-3.5" />
