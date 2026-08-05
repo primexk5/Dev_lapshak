@@ -191,3 +191,11 @@
     background: #52525b;
   }
 }
+
+@layer utilities {
+  /* Cache Buster: Force soft shadows for light theme without requiring server restart */
+  .shadow-soft { box-shadow: 0 4px 20px -2px rgba(28, 25, 23, 0.05), 0 0 3px rgba(28, 25, 23, 0.02) !important; }
+  .shadow-lift { box-shadow: 0 10px 40px -4px rgba(28, 25, 23, 0.08), 0 4px 12px rgba(28, 25, 23, 0.04) !important; }
+  .shadow-glow { box-shadow: 0 0 0 1px rgba(35, 101, 81, 0.1), 0 8px 32px rgba(35, 101, 81, 0.12) !important; }
+  .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(28, 25, 23, 0.15) !important; }
+}

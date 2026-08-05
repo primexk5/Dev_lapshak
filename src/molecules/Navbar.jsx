@@ -33,7 +33,7 @@ const Navbar = () => {
           : 'bg-transparent border-b border-transparent'
       }`}
     >
-      <div className="container-page relative z-[60]">
+      <div className="container-page relative z-50">
         <div className="flex items-center justify-between h-[4.25rem]">
           <a href="#home" className="flex items-center gap-3 group relative z-50">
             <span className="text-2xl font-serif tracking-tight text-ink">
@@ -58,21 +58,18 @@ const Navbar = () => {
 
           <button
             type="button"
-            onClick={() => setIsOpen((v) => !v)}
+            onClick={() => setIsOpen(true)}
             className="md:hidden relative z-50 p-2 -mr-2 text-ink outline-none"
-            aria-label={isOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={isOpen}
+            aria-label="Open menu"
           >
-            <div className={`transition-transform duration-300 ${isOpen ? 'rotate-90' : 'rotate-0'}`}>
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </div>
+            <Menu className="w-6 h-6" />
           </button>
         </div>
       </div>
 
       {/* Backdrop */}
       <div 
-        className={`md:hidden fixed inset-0 z-40 bg-ink/10 backdrop-blur-sm transition-all duration-300 ${
+        className={`md:hidden fixed inset-0 z-[105] bg-ink/10 backdrop-blur-sm transition-all duration-300 ${
           isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
         }`}
         onClick={() => setIsOpen(false)}
@@ -81,11 +78,21 @@ const Navbar = () => {
 
       {/* Side drawer */}
       <div
-        className={`md:hidden fixed top-0 right-0 h-[100svh] w-[85vw] max-w-sm z-50 bg-canvas border-l border-line shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col ${
+        className={`md:hidden fixed top-0 right-0 h-[100svh] w-[85vw] max-w-sm z-[110] bg-canvas border-l border-line shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="pt-24 pb-10 px-6 sm:px-8 flex flex-col h-full overflow-y-auto">
+        <div className="flex items-center justify-end h-[4.25rem] px-6 sm:px-8">
+          <button
+            type="button"
+            onClick={() => setIsOpen(false)}
+            className="p-2 -mr-2 text-ink outline-none"
+            aria-label="Close menu"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+        <div className="pt-6 pb-10 px-6 sm:px-8 flex flex-col h-full overflow-y-auto">
           <nav className="flex flex-col gap-1" aria-label="Mobile">
             {navLinks.map((link, i) => (
               <a
