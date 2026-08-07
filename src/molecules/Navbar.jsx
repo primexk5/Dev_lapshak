@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { Menu, X } from 'lucide-react'
 
 const navLinks = [
@@ -12,6 +12,15 @@ const navLinks = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const toggleRef = useRef(null)
+  const closeBtnRef = useRef(null)
+
+  const closeAndFocus = useCallback(() => {
+    setIsOpen(false)
+    toggleRef.current?.focus()
+  }, [])
+
+  const closeMenu = useCallback(() => setIsOpen(false), [])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
@@ -23,6 +32,25 @@ const Navbar = () => {
     document.body.style.overflow = isOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [isOpen])
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)')
+    const onChange = (e) => {
+      if (e.matches) setIsOpen(false)
+    }
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+
+  useEffect(() => {
+    if (!isOpen) return
+    closeBtnRef.current?.focus()
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') closeAndFocus()
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [isOpen, closeAndFocus])
 
   return (
     <header
@@ -60,10 +88,13 @@ const Navbar = () => {
           </nav>
 
           <button
+            ref={toggleRef}
             type="button"
             onClick={() => setIsOpen(true)}
             className="md:hidden relative z-50 p-2 -mr-2 text-ink outline-none"
             aria-label="Open menu"
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
           >
             <Menu className="w-6 h-6" />
           </button>
@@ -75,20 +106,24 @@ const Navbar = () => {
         className={`md:hidden fixed inset-0 z-[105] bg-ink/10 backdrop-blur-sm transition-all duration-300 ${
           isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
         }`}
-        onClick={() => setIsOpen(false)}
+        onClick={closeAndFocus}
         aria-hidden="true"
       />
 
       {/* Side drawer */}
       <div
-        className={`md:hidden fixed top-0 right-0 h-[100svh] w-[85vw] max-w-sm z-[110] bg-canvas border-l border-line shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col ${
+        id="mobile-menu"
+        aria-hidden={!isOpen}
+        inert={!isOpen}
+        className={`md:hidden fixed top-0 right-0 h-screen h-[100svh] w-[85vw] max-w-sm z-[110] bg-canvas border-l border-line shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         <div className="flex items-center justify-end h-[4.25rem] px-6 sm:px-8">
           <button
+            ref={closeBtnRef}
             type="button"
-            onClick={() => setIsOpen(false)}
+            onClick={closeAndFocus}
             className="p-2 -mr-2 text-ink outline-none"
             aria-label="Close menu"
           >
@@ -101,7 +136,7 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={() => setIsOpen(false)}
+                onClick={closeMenu}
                 target={link.external ? '_blank' : undefined}
                 rel={link.external ? 'noopener noreferrer' : undefined}
                 className="font-serif text-3xl sm:text-4xl text-ink py-4 border-b border-line"
@@ -119,7 +154,7 @@ const Navbar = () => {
           <div className="mt-auto pt-8">
             <a
               href="#contact"
-              onClick={() => setIsOpen(false)}
+              onClick={closeMenu}
               className="btn-accent w-full"
             >
               Hire me

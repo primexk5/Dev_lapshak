@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { ArrowUpRight, Github, ExternalLink } from 'lucide-react'
 import { useInView } from '../hooks/useInView'
 
@@ -11,6 +11,7 @@ const projects = [
     github: '#',
     live: 'https://hybrid-agent-ecru.vercel.app/',
     featured: true,
+    image: '/images/hybrid-agent.png', // Add your image to public/images/
   },
   {
     id: 2,
@@ -20,6 +21,7 @@ const projects = [
     github: '#',
     live: 'https://www.jostinshelpinghand.org/',
     featured: true,
+    image: '/images/jostins.png', // Add your image to public/images/
   },
   {
     id: 3,
@@ -29,6 +31,7 @@ const projects = [
     github: '#',
     live: 'https://www.benueblockchainfest.com/',
     featured: true,
+    image: '/images/blockchain-fest.png', // Add your image to public/images/
   },
   {
     id: 4,
@@ -113,50 +116,65 @@ const projects = [
   },
 ]
 
-function screenshotUrl(live) {
-  if (!live || live === '#') return null
-  return `https://api.microlink.io/?url=${encodeURIComponent(
-    live
-  )}&screenshot=true&meta=false&embed=screenshot.url&prerender=true&waitFor=3000`
-}
-
-const ProjectImage = ({ project, className = '' }) => {
-  const [loaded, setLoaded] = useState(false)
-  const [failed, setFailed] = useState(false)
-  const src = screenshotUrl(project.live)
-
-  if (!src || failed) {
-    return (
-      <div
-        className={`flex items-center justify-center bg-gradient-to-br from-accent-soft via-canvas to-line ${className}`}
-      >
-        <span className="font-serif text-3xl text-ink/20 italic">{project.title[0]}</span>
-      </div>
-    )
-  }
-
+const ProjectIframe = ({ url, title }) => {
+  const containerRef = useRef(null)
+  const [scale, setScale] = useState(0.25)
+  
+  useEffect(() => {
+    if (!window.ResizeObserver) return
+    const observer = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        const width = entry.contentRect.width
+        // Force the iframe to think it is 1280px wide, and scale it to fit the container precisely
+        setScale(width / 1280)
+      }
+    })
+    if (containerRef.current) observer.observe(containerRef.current)
+    return () => observer.disconnect()
+  }, [])
+  
   return (
-    <div className={`relative overflow-hidden ${className}`}>
-      {!loaded && <div className="absolute inset-0 img-shimmer" />}
-      <img
-        src={src}
-        alt={`Screenshot of ${project.title}`}
+    <div ref={containerRef} className="absolute inset-0 overflow-hidden bg-canvas">
+      <iframe 
+        src={url} 
+        title={title}
+        className="absolute top-0 left-0 border-none origin-top-left pointer-events-none transition-transform duration-700 group-hover:scale-[1.03]"
+        style={{
+          width: '1280px',
+          height: '1024px', // Give it enough height to cover the container vertically
+          transform: `scale(${scale})`
+        }}
+        tabIndex={-1}
         loading="lazy"
-        onLoad={() => setLoaded(true)}
-        onError={() => setFailed(true)}
-        className={`w-full h-full object-cover object-top transition-all duration-700 ease-out group-hover:scale-[1.03] ${
-          loaded ? 'opacity-100' : 'opacity-0'
-        }`}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
     </div>
   )
 }
 
-const FeaturedCard = ({ project, index }) => (
+const ProjectImage = ({ project, className = '' }) => (
+  <div
+    className={`relative flex items-center justify-center overflow-hidden bg-canvas ${className}`}
+  >
+    {project.live && project.live !== '#' ? (
+      <ProjectIframe url={project.live} title={project.title} />
+    ) : (
+      <>
+        <span
+          className="font-serif text-5xl text-ink/15 italic select-none"
+          aria-hidden="true"
+        >
+          {project.title[0]}
+        </span>
+        <div className="absolute inset-0 skeleton-sweep pointer-events-none" />
+      </>
+    )}
+  </div>
+)
+
+const FeaturedCard = ({ project, index, wide }) => (
   <article
-    className={`group card-lift rounded-2xl border border-line bg-surface overflow-hidden shadow-soft ${
-      index === 0 ? 'md:col-span-2 lg:col-span-2' : ''
+    className={`group card-lift rounded-2xl border border-line bg-surface overflow-hidden shadow-soft hover:border-line-strong ${
+      wide ? 'md:col-span-2' : ''
     }`}
   >
     <a
@@ -167,7 +185,13 @@ const FeaturedCard = ({ project, index }) => (
     >
       <ProjectImage
         project={project}
-        className={`w-full ${index === 0 ? 'h-56 sm:h-72 lg:h-80' : 'h-48 sm:h-56'}`}
+        className={`w-full ${
+          index === 0
+            ? 'h-56 sm:h-72 lg:h-80'
+            : wide
+            ? 'h-48 sm:h-56 md:h-64'
+            : 'h-48 sm:h-56'
+        }`}
       />
     </a>
     <div className="p-6 sm:p-7">
@@ -253,13 +277,19 @@ const CompactCard = ({ project }) => (
 
 const Projects = () => {
   const [headRef, headVisible] = useInView()
-  const [featRef, featVisible] = useInView()
-  const [moreRef, moreVisible] = useInView()
   const [showAll, setShowAll] = useState(false)
+  const [activeTag, setActiveTag] = useState('All')
 
   const featured = projects.filter((p) => p.featured)
   const rest = projects.filter((p) => !p.featured)
-  const visibleRest = showAll ? rest : rest.slice(0, 4)
+  const allTags = ['All', ...Array.from(new Set(rest.flatMap((p) => p.tags)))]
+  const filtered = activeTag === 'All' ? rest : rest.filter((p) => p.tags.includes(activeTag))
+  const visibleRest = showAll ? filtered : filtered.slice(0, 4)
+
+  const handleTag = (tag) => {
+    setActiveTag(tag)
+    setShowAll(false)
+  }
 
   return (
     <section id="projects" className="section bg-canvas relative">
@@ -279,44 +309,71 @@ const Projects = () => {
             </p>
           </div>
           <p className="text-sm text-ink-faint font-mono shrink-0 md:pb-1">
-            {projects.length} projects
+            {featured.length} featured · {projects.length} total
           </p>
         </div>
 
         {/* Featured */}
-        <div
-          ref={featRef}
-          className={`grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 mb-6 reveal ${
-            featVisible ? 'visible' : ''
-          }`}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 mb-6">
           {featured.map((project, i) => (
-            <FeaturedCard key={project.id} project={project} index={i} />
+            <FeaturedCard
+              key={project.id}
+              project={project}
+              index={i}
+              wide={i === 0 || i === featured.length - 1}
+            />
           ))}
         </div>
 
         {/* More work */}
-        <div
-          ref={moreRef}
-          className={`reveal reveal-delay-1 ${moreVisible ? 'visible' : ''}`}
-        >
-          <h3 className="text-sm font-medium text-ink-faint uppercase tracking-wider mb-5 mt-10">
-            More projects
-          </h3>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {visibleRest.map((project) => (
-              <CompactCard key={project.id} project={project} />
-            ))}
+        <div className="mt-10">
+          <div className="flex flex-wrap items-end justify-between gap-4 mb-5">
+            <h3 className="text-sm font-medium text-ink-faint uppercase tracking-wider">
+              More projects
+            </h3>
+            <div
+              className="flex flex-wrap gap-2"
+              role="group"
+              aria-label="Filter projects by tag"
+            >
+              {allTags.map((tag) => (
+                <button
+                  key={tag}
+                  type="button"
+                  onClick={() => handleTag(tag)}
+                  aria-pressed={activeTag === tag}
+                  className={`px-3 py-1.5 rounded-full border text-xs font-mono transition-all duration-200 ${
+                    activeTag === tag
+                      ? 'bg-ink text-canvas border-ink'
+                      : 'border-line text-ink-muted hover:text-ink hover:border-line-strong'
+                  }`}
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
           </div>
 
-          {rest.length > 4 && (
+          {filtered.length === 0 ? (
+            <p className="text-sm text-ink-muted text-center py-10">
+              No projects with that tag yet.
+            </p>
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {visibleRest.map((project) => (
+                <CompactCard key={project.id} project={project} />
+              ))}
+            </div>
+          )}
+
+          {filtered.length > 4 && (
             <div className="mt-8 text-center">
               <button
                 type="button"
                 onClick={() => setShowAll((v) => !v)}
                 className="btn-secondary"
               >
-                {showAll ? 'Show less' : `View all ${rest.length} projects`}
+                {showAll ? 'Show less' : `View all ${filtered.length} projects`}
               </button>
             </div>
           )}

@@ -1,7 +1,17 @@
-import React, { useState, useRef } from 'react'
-import { ArrowUpRight, Check, Loader2, Mail, MapPin, Phone } from 'lucide-react'
+import React, { useState, useRef, useEffect } from 'react'
+import { AlertCircle, ArrowUpRight, Check, Loader2, Mail, MapPin, Phone, X } from 'lucide-react'
 import emailjs from '@emailjs/browser'
 import { useInView } from '../hooks/useInView'
+
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_6ko5cur'
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_wsm75xe'
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'BEBVpFZr0aIUCAska'
+
+emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY })
+
+const initialData = { from_name: '', user_email: '', subject: '', message: '' }
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 const contactItems = [
   {
@@ -24,50 +34,71 @@ const contactItems = [
   },
 ]
 
+const validate = (data) => {
+  const errors = {}
+  if (!data.from_name.trim()) {
+    errors.from_name = 'Please tell me your name.'
+  }
+  if (!data.user_email.trim()) {
+    errors.user_email = 'Your email is required.'
+  } else if (!EMAIL_PATTERN.test(data.user_email.trim())) {
+    errors.user_email = 'That email address does not look right.'
+  }
+  if (!data.subject.trim()) {
+    errors.subject = 'A short subject helps me prioritise your note.'
+  }
+  if (data.message.trim().length < 10) {
+    errors.message = 'Add a few more details so I can reply properly (min. 10 characters).'
+  }
+  return errors
+}
+
 const Contact = () => {
-  const form = useRef()
-  const [formData, setFormData] = useState({
-    from_name: '',
-    user_email: '',
-    subject: '',
-    message: '',
-  })
+  const form = useRef(null)
+  const successTimer = useRef(null)
+  const [formData, setFormData] = useState(initialData)
+  const [errors, setErrors] = useState({})
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
   const [ref, visible] = useInView()
 
+  useEffect(() => () => clearTimeout(successTimer.current), [])
+
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: '' }))
+    }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setIsSubmitting(true)
-    setError('')
+    if (isSubmitting || submitted) return
+    if (form.current.website?.value) return
 
-    emailjs
-      .sendForm(
-        'service_6ko5cur',
-        'template_wsm75xe',
+    const nextErrors = validate(formData)
+    setErrors(nextErrors)
+    setError('')
+    if (Object.keys(nextErrors).length > 0) return
+
+    setIsSubmitting(true)
+    try {
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
         form.current,
-        'BEBVpFZr0aIUCAska'
+        EMAILJS_PUBLIC_KEY
       )
-      .then(() => {
-        setSubmitted(true)
-        setFormData({
-          from_name: '',
-          user_email: '',
-          subject: '',
-          message: '',
-        })
-        setTimeout(() => setSubmitted(false), 4000)
-      })
-      .catch(() => {
-        setError('Could not send. Email me directly and I will reply soon.')
-      })
-      .finally(() => setIsSubmitting(false))
+      setSubmitted(true)
+      setFormData(initialData)
+      successTimer.current = setTimeout(() => setSubmitted(false), 5000)
+    } catch {
+      setError('Something went wrong sending the message. Email me directly and I will reply soon.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -139,8 +170,18 @@ const Contact = () => {
             <form
               ref={form}
               onSubmit={handleSubmit}
+              aria-busy={isSubmitting}
               className="rounded-2xl border border-night-line bg-night-card/80 backdrop-blur-sm p-6 sm:p-8 space-y-5 shadow-lift"
             >
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="hidden"
+              />
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                   <label htmlFor="from_name" className="block text-xs font-medium text-night-muted mb-2">
@@ -154,9 +195,16 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     placeholder="Your name"
-                    className="input-field"
+                    className={`input-field ${errors.from_name ? '!border-red-400/60' : ''}`}
                     autoComplete="name"
+                    aria-invalid={Boolean(errors.from_name)}
+                    aria-describedby={errors.from_name ? 'from_name-error' : undefined}
                   />
+                  {errors.from_name && (
+                    <p id="from_name-error" className="mt-1.5 text-xs text-red-300">
+                      {errors.from_name}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <label htmlFor="user_email" className="block text-xs font-medium text-night-muted mb-2">
@@ -170,9 +218,16 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     placeholder="you@company.com"
-                    className="input-field"
+                    className={`input-field ${errors.user_email ? '!border-red-400/60' : ''}`}
                     autoComplete="email"
+                    aria-invalid={Boolean(errors.user_email)}
+                    aria-describedby={errors.user_email ? 'user_email-error' : undefined}
                   />
+                  {errors.user_email && (
+                    <p id="user_email-error" className="mt-1.5 text-xs text-red-300">
+                      {errors.user_email}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -188,8 +243,15 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   placeholder="Role, project, or intro"
-                  className="input-field"
+                  className={`input-field ${errors.subject ? '!border-red-400/60' : ''}`}
+                  aria-invalid={Boolean(errors.subject)}
+                  aria-describedby={errors.subject ? 'subject-error' : undefined}
                 />
+                {errors.subject && (
+                  <p id="subject-error" className="mt-1.5 text-xs text-red-300">
+                    {errors.subject}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -204,34 +266,72 @@ const Contact = () => {
                   required
                   rows={5}
                   placeholder="A few lines about the opportunity or project…"
-                  className="input-field resize-y min-h-[130px]"
+                  className={`input-field resize-y min-h-[130px] ${errors.message ? '!border-red-400/60' : ''}`}
+                  aria-invalid={Boolean(errors.message)}
+                  aria-describedby={errors.message ? 'message-error' : undefined}
                 />
+                {errors.message && (
+                  <p id="message-error" className="mt-1.5 text-xs text-red-300">
+                    {errors.message}
+                  </p>
+                )}
               </div>
 
+              {submitted && (
+                <div
+                  role="status"
+                  className="flex items-start gap-3 rounded-xl border border-accent/40 bg-accent/10 px-4 py-3.5 text-sm text-accent-soft"
+                >
+                  <Check className="w-4 h-4 mt-0.5 shrink-0" />
+                  <p>
+                    Message sent — thank you! I will get back to you within one
+                    to two days.
+                  </p>
+                </div>
+              )}
+
               {error && (
-                <p className="text-sm text-red-400" role="alert">
-                  {error}
-                </p>
+                <div
+                  role="alert"
+                  className="flex items-start gap-3 rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-3.5 text-sm text-red-300"
+                >
+                  <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
+                  <p className="flex-1">
+                    {error}{' '}
+                    <a
+                      href="mailto:lapshakbarnabas4@gmail.com"
+                      className="text-surface underline underline-offset-2 hover:text-accent transition-colors"
+                    >
+                      Write directly
+                    </a>
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setError('')}
+                    aria-label="Dismiss error"
+                    className="shrink-0 text-red-300/70 hover:text-red-200 transition-colors"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
               )}
 
               <div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-1">
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || submitted}
                   className="btn-accent min-w-[160px]"
                 >
-                  {submitted ? (
-                    <>
-                      <Check className="w-4 h-4" />
-                      Message sent
-                    </>
-                  ) : isSubmitting ? (
+                  {isSubmitting ? (
                     <>
                       <Loader2 className="w-4 h-4 animate-spin" />
                       Sending…
                     </>
                   ) : (
-                    'Send message'
+                    <>
+                      <Check className="w-4 h-4" />
+                      Send message
+                    </>
                   )}
                 </button>
                 <p className="text-xs text-night-muted">

@@ -2,11 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/instrument-serif-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/instrument-serif-italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono.woff2') format('woff2');
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  section[id] {
+    scroll-margin-top: 5.5rem;
   }
 
   body {
@@ -157,19 +193,19 @@
   z-index: 1;
 }
 
-/* Project image shimmer while loading */
-.img-shimmer {
+/* Project skeleton shimmer */
+.skeleton-sweep {
   background: linear-gradient(
-    110deg,
-    #27272a 25%,
-    #3f3f46 37%,
-    #27272a 63%
+    105deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 58%
   );
   background-size: 200% 100%;
-  animation: shimmer 1.4s ease infinite;
+  animation: skeleton-sweep 3s ease-in-out infinite;
 }
 
-@keyframes shimmer {
+@keyframes skeleton-sweep {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }
