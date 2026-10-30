@@ -5,13 +5,12 @@ import { useInView } from '../hooks/useInView'
 const projects = [
   {
     id: 1,
-    title: 'Hybrid Agent',
-    description: 'A highly secure way to receive commissions locally and internationally on property & vehicle sales — fast and easy.',
-    tags: ['Next.js', 'Fintech', 'Real Estate'],
+    title: 'Wahala Alert',
+    description: 'Explore the Wahala Alert web platform.',
+    tags: ['Web App'],
     github: '#',
-    live: 'https://hybrid-agent-ecru.vercel.app/',
+    live: 'https://wahala-alert.vercel.app/',
     featured: true,
-    image: '/images/hybrid-agent.png', // Add your image to public/images/
   },
   {
     id: 2,
@@ -35,11 +34,20 @@ const projects = [
   },
   {
     id: 4,
-    title: 'Benue SEMA',
-    description: 'Official platform for the Benue State Emergency Management Agency, handling disaster response and updates.',
-    tags: ['React', 'Node.js', 'Emergency Response'],
+    title: 'Jora Collection',
+    description: 'Explore the Jora Collection website.',
+    tags: ['Collection', 'Website'],
     github: '#',
-    live: 'https://www.benuesema.com/',
+    live: 'https://jora-collection.vercel.app/',
+    featured: true,
+  },
+  {
+    id: 14,
+    title: 'City Law Firm Consultants',
+    description: 'Professional website for City Law Firm Consultants.',
+    tags: ['Legal', 'Corporate'],
+    github: '#',
+    live: 'https://www.citylawfirmconsultants.com/',
     featured: true,
   },
   {
